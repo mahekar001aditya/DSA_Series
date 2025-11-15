@@ -17,23 +17,24 @@ class Solution {
 
 
 
-[ Note: if center or first
+[ Note: if center or first  then  : i-1
+        if at end then            : n   ]
 
 ✅ Example 1
 Input: nums = [2,2,3,2]
+
 Sorted:
-2   2   2   3
+2   2   2   3               [end]
 ───────────
 
 
 Triplet 2 2 2 is underlined as one continuous line.
 
-Remaining:
-
-3
+output: 3
 
 
-🎯 Output = 3
+
+
 
 ✅ Example 2
 Input: nums = [0,1,0,1,0,1,99]
@@ -41,6 +42,7 @@ Sorted:
 0   0   0   1   1   1   99
 ──────────  ──────────
 
+output: 9
 
 Triplets:
 

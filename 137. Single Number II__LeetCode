@@ -17,7 +17,7 @@ class Solution {
 
 
 
-[ Note: if center or first  then  : i-1
+[ Note: if between or first  then  : i-1
         if at end then            : n   ]
 
 ✅ Example 1

@@ -1,0 +1,47 @@
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        
+        int n = nums.length -1;
+        Arrays.sort(nums);
+
+        for(int i = 1 ; i<= n-1; i = i+3){
+           if(!(nums[i-1] == nums[i] &&  nums[i] == nums[i+1]))
+                return nums[i-1];
+            
+        }
+         return nums[n];
+    }
+}
+
+
+
+
+[ Note: if center or first
+
+✅ Example 1
+Input: nums = [2,2,3,2]
+Sorted:
+2   2   2   3
+───────────
+
+
+Triplet 2 2 2 is underlined as one continuous line.
+
+Remaining:
+
+3
+
+
+🎯 Output = 3
+
+✅ Example 2
+Input: nums = [0,1,0,1,0,1,99]
+Sorted:
+0   0   0   1   1   1   99
+──────────  ──────────
+
+
+Triplets:
+
+First triplet underline →

@@ -1,0 +1,36 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+
+        int slow = nums[0], fast = nums[0];    // start both pointers
+
+        do {
+            slow = nums[slow];             // slow moves 1 step
+            fast = nums[nums[fast]];       // fast moves 2 steps
+        } while (slow != fast);            // loop until meeting point
+
+        slow = nums[0];                    // reset slow to start
+
+        while (slow != fast) {             // find cycle entrance
+            slow = nums[slow];             // slow moves 1 step
+            fast = nums[fast];             // fast moves 1 step
+        }
+
+        return slow;                       // duplicate number found
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////
+[ Note: slow moves 1 step
+       Fast moves 2 step
+       onces both get at end
+       slow return to 0 Index
+       slow move 1 step
+       Fast moves 1 step
+       Both meet ( Duplicate ) ] 
+
+Index:   0 → 1 → 2 → 3 → 4
+Value:   1   2   3   4   3
+                 ↑       │
+                 └───────┘ (cycle starts at value 3)
+
+

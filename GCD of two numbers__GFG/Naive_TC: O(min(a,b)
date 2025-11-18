@@ -1,0 +1,49 @@
+class Solution {
+    public static int gcd(int a, int b) {
+       
+        int res = Math.min(a, b);      // start checking from smaller number
+        
+        while (res > 0) {              // keep reducing until divisor found
+            if (a % res == 0 && b % res == 0) {
+                break;                 // found the greatest common divisor
+            }
+            res--;                     // decrease and check again
+        }
+        
+        return res;                    // return the GCD
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+Example: a = 10, b = 15
+
+Start:
+res = min(10, 15) = 10
+
+Check:
+10 % 10 == 0  but 15 % 10 != 0  → no
+9  % 9  != 0                   → no
+8  % 8  != 0                   → no
+7  % 7  != 0                   → no
+6  % 6  != 0                   → no
+5  % 5  == 0 AND 15 % 5 == 0   → YES (GCD found)
+
+Answer:
+GCD(10, 15) = 5
+
+------------------------------------------------------------------------------
+Example 2: 
+a = 4,  b = 6
+
+
+          1 2   3 4   5 6
+        ___________________
+1       | ■ ■ | ■ ■ | ■ ■ |     
+2       | ■ ■ | ■ ■ | ■ ■ |                                
+        |-----|-----|-----|                    
+3       | ■ ■ | ■ ■ | ■ ■ |
+4       | ■ ■ | ■ ■ | ■ ■ |
+        |_____|_____|_____|
+
+//////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,39 @@
+
+class Solution {
+    public static int gcd(int a, int b) {
+       
+      while (a != b) {        // keep looping until both numbers become equal
+          if (a > b)
+              a = a - b;      // subtract smaller from larger
+          else
+              b = b - a;      // subtract smaller from larger
+      }
+      return a;               // when equal → this value is the GCD
+    }
+}
+
+
+/////////////////////////////////////////////////////////////
+
+Euclid’s Algorithm: A method to find the GCD of two numbers by repeatedly replacing the larger number with the remainder until the remainder becomes zero.
+
+If you want even shorter:
+
+Shortest: Find GCD by repeatedly using: GCD(a, b) = GCD(b, a % b).
+
+----------------------------------------------------------------
+
+Start:      a = 12, b = 15
+
+Step 1:     a = 12, b = 3
+Step 2:     a = 9,  b = 3
+Step 3:     a = 6,  b = 3
+Step 4:     a = 3,  b = 3
+
+Stop (a == b)
+
+GCD = 3
+---------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////
+

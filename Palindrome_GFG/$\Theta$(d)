@@ -1,0 +1,33 @@
+
+[ Note: x % 10 => get last digit
+       x / 10 => remove last digit ]
+
+
+
+class Solution {
+    public boolean isPalindrome(int n) {       // n = 363
+        // code here
+        
+        int rev = 0;                    // reverse
+        int x = n;
+        int ld;                         // last digit
+            
+        while(x > 0){
+            
+            ld = x % 10;                 // get Last digit [ 363 => ld = 3 ]
+                                        // [ 36 => ld = 6 ]
+                                        // [ 3 => ld = 3 ]
+    
+            x = x / 10;                 // remove Last digit [ 363 = 36 ] 
+                                        //  [ 36 = 3 ]
+                                        //  [ 3 = 0 ]
+            
+            
+            rev = rev * 10 + ld;         //  [ rev = 0 * 10 + 3 => 3 ]
+                                         //  [ rev =  3 * 10 + 6 => 36 ]
+                                         //  [ rev = 36 * 10 + 3 => 363]
+        }
+           
+        return (rev == n);          // 363 == 363
+    }
+}

@@ -1,0 +1,13 @@
+class Solution {
+    public static int countDigits(int n) {
+        // Code here
+        int res = 0;
+        int x = n;
+        
+        while(x>0){
+            x = x/10;  //  if 345 => 345/10 => 34
+            res++;
+        }
+        return res;
+    }
+}

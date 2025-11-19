@@ -1,0 +1,37 @@
+class Solution {
+    
+    public static int gcd(int a, int b) {
+        if (b == 0) 
+            return a;                                                   // return when remainder becomes 0
+        return gcd(b, a % b);                                           // recursive gcd
+    }
+        
+    public int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);                                    // formula: lcm = (a*b)/gcd
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////
+
+Definition of LCM: LCM (Least Common Multiple) of two or more numbers is the smallest positive number that is exactly divisible by all the given numbers.
+
+╔══════════════════════════════════╗
+║ (a * b) = gcd(a, b) * lcm(a, b)  ║   
+╚══════════════════════════════════╝
+                ↓
+╔═════════════════════════════════════════╗
+║     lcm(a, b) = (a * b) / gcd(a, b)     ║
+╚═════════════════════════════════════════╝
+
+Example:
+
+a = 4,  b = 6
+
+gcd = 2
+
+lcm = (4*6)/2  => 12
+
+//////////////////////////////////////////////////////////////////////
+
+

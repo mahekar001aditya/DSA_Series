@@ -36,7 +36,36 @@ Idea: divisors always appear in pairs
 ║        x ≤ √n                                                ║
 ╚══════════════════════════════════════════════════════════════╝
 
+------------------------------------------------------------------------------------
 
+Example1:                  # Dry Run for n = 37  (Using i * i ≤ 37)
+
+                            √37 ≈ 6.08  
+                            So check i = 2, 3, 4, 5, 6  
+                            
+                            37 % 2 = 1   → not divisible  
+                            37 % 3 = 1   → not divisible  
+                            37 % 4 = 1   → not divisible  
+                            37 % 5 = 2   → not divisible  
+                            37 % 6 = 1   → not divisible  
+                            
+                            No divisor found ✔️  
+                            → 37 is **Prime**.
+_______________________________________________________________________________________
+
+Example2:                   # Dry Run for n = 65  (Using i * i ≤ 65)
+
+                            √65 ≈ 8.06  
+                            So we check i = 2, 3, 4, 5, 6, 7, 8  
+                            
+                            65 % 2 = 1   → not divisible  
+                            65 % 3 = 2   → not divisible  
+                            65 % 4 = 1   → not divisible  
+                            65 % 5 = 0   → divisible ❌  
+                            
+                            A divisor (5) is found.
+                            
+                            → 65 is **Composite**.
 
 ------------------------------------------------------------------------------------
 

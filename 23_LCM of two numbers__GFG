@@ -1,0 +1,38 @@
+
+
+class Solution {
+    public int lcm(int a, int b) {
+        
+        int res = Math.max(a, b);                       // start from the larger number
+        
+        while (true) {
+
+            if (res % a == 0 && res % b == 0) {         // check divisibility
+                return res;                             // return LCM
+            }
+
+            res++;                                     // move to next number
+        }
+    }
+}
+
+
+/////////////////////////////////////////////////
+
+Defination: LCM (Least Common Multiple) of two or more numbers is the smallest positive number that is exactly divisible by all the given numbers.
+
+# Simple Tracking of LCM (a = 4, b = 6)
+
+max(4,6) =>
+Start:
+res = 6
+
+res = 6   → not LCM      (4%6 == 0  && 6%6 == 0)    X
+res = 7   → not LCM  
+res = 8   → not LCM  
+res = 9   → not LCM  
+res = 10  → not LCM  
+res = 11  → not LCM  
+res = 12  → ✔️ LCM found
+
+/////////////////////////////////////////////////

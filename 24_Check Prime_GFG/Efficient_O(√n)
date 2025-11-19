@@ -1,0 +1,62 @@
+
+class Solution {
+    
+    static boolean isPrime(int n) {
+
+        if (n <= 1)                     // 0 and 1 are not prime
+            return false;
+
+        for (int i = 2; i * i <= n; i++) { // check divisors up to √n
+            if (n % i == 0)
+                return false;          // divisible → not prime
+        }
+
+        return true;                    // no divisor → prime
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////
+
+Idea: divisors always appear in pairs
+
+# Divisor Pairs:
+
+30: (1, 30), (2, 15), (3, 10), (5, 6)
+
+65: (1, 65), (5, 13)
+
+25: (1, 25), (5, 5)
+
+╔══════════════════════════════════════════════════════════════╗
+║   If (x, y) is a pair, then x * y = n                        ║
+║                                                              ║
+║   If x ≤ y, then:                                            ║
+║        x * x ≤ n                                             ║
+║        x ≤ √n                                                ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+
+------------------------------------------------------------------------------------
+
+╔══════════════════════════════════════════════════════════╗
+║                      PRIME NUMBERS                       ║
+╠══════════════════════════════════════════════════════════╣
+║ A prime number is a number greater than 1 that has       ║
+║ exactly two factors: 1 and itself.                       ║
+║                                                          ║
+║ ✔ Prime number series (first few primes):               ║
+║   2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ...                ║
+╠══════════════════════════════════════════════════════════╣
+║                    COMPOSITE NUMBERS                     ║
+╠══════════════════════════════════════════════════════════╣
+║ A composite number is a number greater than 1 that has   ║
+║ more than two factors.                                   ║
+║                                                          ║
+║ ✔ Composite number series:                               ║
+║   4, 6, 8, 9, 10, 12, 14, 15, 16, 18, ...                ║
+╚══════════════════════════════════════════════════════════╝
+
+
+/////////////////////////////////////////////////////////////////////////////////

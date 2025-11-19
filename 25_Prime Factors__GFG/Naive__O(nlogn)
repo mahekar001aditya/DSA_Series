@@ -1,0 +1,70 @@
+
+class Solution {
+    
+    public static boolean isPrime(int n) {                         // Prime Number Code
+
+    if (n <= 1) return false;
+
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+
+
+    public static void primeFac(int n) {
+
+        
+        for(int i = 2;i<=n;i++){
+            
+            if(isPrime(i)){                        
+                int x = i;                                  // prime --> x
+            
+                while(n%x == 0){                           // Check if divisible by Prime then Print
+                   System.out.println(i);
+                
+                    x = x*i;                              // 2 -> 4 
+
+                }
+            }
+            
+        }
+    }
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+n = 12
+  i = 2: 2
+         2
+         2
+  i = 3:
+         3
+  i = 4
+  i = 5
+    .
+    .
+    .
+  i = 11;
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+Prime Factors:
+
+Given a number n. Find its unique prime factors in increasing order.
+
+Examples :
+
+Input: n = 100
+Output: [2, 5]
+Explanation: Unique prime factors of 100 are 2 and 5.
+Input: n = 60
+Output: [2, 3, 5]
+Explanation: Prime factors of 60 are 2, 2, 3, 5. Unique prime factors are 2, 3 and 5.
+Constraints:
+1 ≤ n ≤ 106
+
+////////////////////////////////////////////////////////////////////////////////////////////

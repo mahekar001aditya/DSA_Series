@@ -1,14 +1,33 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int sum = 0;
-        int n = nums.length;
 
-        for(int i = 0;i<=n-1;i++){
-            sum = sum + nums[i];
+              int n = nums.length;                                      // n = number of elements in array
+                                                                        // Total numbers expected = 0 to n  (n+1 numbers)
+       
+        int sum = 0;                                                  // Step 1: Calculate the sum of all elements present in the array
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];                                         // accumulate the numbers
         }
-        int actSum = n *(n+1)/2;
-         actSum = actSum - sum;
-
-        return actSum;
+     
+        int expectedSum = n * (n + 1) / 2;                        // Step 2: Calculate expected sum of all numbers from 0 to n
+                                                                  // Formula: n * (n + 1) / 2
+        
+        return expectedSum - sum;                                 // Step 3: The missing number = expected total - actual sum
     }
 }
+
+//////////////////////////////////////////////////////////////////
+
+Input:
+nums = {1, 0, 3}    
+
+actual Sum =>   1 + 0 + 3    =>   4
+
+expected Sum = n * (n + 1) / 2
+            = 3 * 4 / 2
+            = 6
+
+
+missing number = 6 - 4 => 2
+
+/////////////////////////////////////////////////////////////////

@@ -3,15 +3,15 @@ class Solution {
     
     static boolean isPrime(int n) {
 
-        if (n <= 1)                     // 0 and 1 are not prime
+        if (n <= 1)                                                     // 0 and 1 are not prime
             return false;
-
-        for (int i = 2; i * i <= n; i++) { // check divisors up to √n
+ 
+        for (int i = 2; i * i <= n; i++) {                             // check divisors up to √n   [x ≤ √n] => [x * x ≤ n] 
             if (n % i == 0)
-                return false;          // divisible → not prime
+                return false;                                          // divisible → not prime
         }
 
-        return true;                    // no divisor → prime
+        return true;                                                  // no divisor → prime
     }
 }
 

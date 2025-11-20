@@ -1,13 +1,13 @@
 class Solution {
     public int[] sieve(int n) {
 
-        boolean isPrime[] = new boolean[n+1];              //   WRONG TYPE (should be boolean[]), array to mark primes
-        Arrays.fill(isPrime, true);                    //   Initialize all values as true (assume prime)
+        boolean isPrime[] = new boolean[n+1];                  //   WRONG TYPE (should be boolean[]), array to mark primes
+        Arrays.fill(isPrime, true);                           //   Initialize all values as true (assume prime)
 
-        for(int i = 2; i * i <= n; i++) {              //   Loop till √n
-            if(isPrime[i]) {                           //   Check if current number is prime
-                for(int j = i * i; j <= n; j = j + i){  //   Mark multiples of i
-                    isPrime[j] = false;                //   Set multiple as not prime
+        for(int i = 2; i * i <= n; i++) {                       //   Loop till √n
+            if(isPrime[i]) {                                   //   Check if current number is prime
+                for(int j = i * i; j <= n; j = j + i){         //   Mark multiples of i                     // replaced 2*i   =>    i*i
+                    isPrime[j] = false;                       //   Set multiple as not prime
                 }
             }
         }

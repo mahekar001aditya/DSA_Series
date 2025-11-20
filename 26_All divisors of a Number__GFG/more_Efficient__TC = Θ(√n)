@@ -9,7 +9,7 @@ class Solution {
             }
         }
 
-        for (i = i - 1; i >= 1; i--) {               // Traverse backwards
+        for (i = i - 1; i >= 1; i--) {               // Traverse backwards         // Fix: start from i-1 when perfect square to avoid duplicate
             if (n % i == 0 && i != n / i) {          // Check Divisor && Avoid duplicate values  
                 System.out.print(n / i + " ");       // Print paired divisor
             }
@@ -22,15 +22,15 @@ class Solution {
 Example1:               n = 15
                         
                         1 Loop:
-                        i=1: print(1)
-                        i=2:
-                        i=3: print(3)
+                                i=1: print(1)
+                                i=2:
+                                i=3: print(3)
                         
                         2 Loop:
-                        i=4:
-                        i=3: print(5)
-                        i=2:
-                        i=1: print(15)
+                                i=4:
+                                i=3: print(5)
+                                i=2:
+                                i=1: print(15)
 
 
 -------------------------------------------------------------------------

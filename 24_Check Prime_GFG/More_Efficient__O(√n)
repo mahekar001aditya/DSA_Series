@@ -8,8 +8,8 @@ class Solution {
         
         if (n % 2 == 0 || n % 3 == 0) return false;                // eliminate multiples of 2 and 3           [ _2_, (3), _4_, 5, _(6)_, 7, _8_, (9), _10_, 11, _(12)_, 13,_14_, (15), _16_, 17, _(18)_, 19, _20_, (21), ..., √n ]    
         
-        // check only numbers of form 6k ± 2 (i and i+2)
-        for (int i = 5; i * i <= n; i = i + 6) {
+        
+        for (int i = 5; i * i <= n; i = i + 6) {                  // check only numbers of form 6k ± 2 (i and i+2)
             if (n % i == 0 || n % (i + 2) == 0)                   // check divisibility by i and i+2
                 return false;
         }

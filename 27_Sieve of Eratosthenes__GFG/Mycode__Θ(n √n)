@@ -1,0 +1,39 @@
+class Solution {
+    
+    static boolean isPrime(int n) {
+        
+        if (n == 1) return false;                               // 1 is not prime
+        
+        if (n == 2 || n == 3) return true;                      // 2 and 3 are prime
+        
+        if (n % 2 == 0 || n % 3 == 0) return false;             // Eliminate multiples of 2 and 3
+        
+        for (int i = 5; i * i <= n; i = i + 6) {               // Loop using 6k ± 1 logic
+            if (n % i == 0 || n % (i + 2) == 0) {              // Check divisibility by i and i+2
+                return false;                                  // Not a prime
+            }
+        }
+        
+        return true;                                           // Prime number
+    }
+    
+    
+    public int[] sieve(int n) {
+   
+        ArrayList<Integer> list = new ArrayList<>();           // Dynamic list to store primes
+        
+        for (int i = 2; i <= n; i++) {                         // Loop from 2 to n
+            if (isPrime(i)) {                                  // Check prime
+                list.add(i);                                   // Store prime in list
+            }
+        }
+        
+        int arr[] = new int[list.size()];                      // Create array of exact size
+        
+        for (int i = 0; i < list.size(); i++) {                 // Copy values from list to array
+            arr[i] = list.get(i);                              // Assign prime to array
+        }
+        
+        return arr;                                            // Return final prime array
+    }
+}

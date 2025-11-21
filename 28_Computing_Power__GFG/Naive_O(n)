@@ -1,0 +1,33 @@
+
+int power(int x, int n) {
+    
+    int res = 1;            // store result, start with 1
+    
+    for (int i = 0; i < n; i++) {     // loop n times
+        res = res * x;      // multiply x with result
+    }
+    
+    return res;             // return final answer
+}
+
+
+///////////////////////////////////////////////////////////////////
+
+✅ Dry Run Example
+
+Input:
+x = 3, n = 4
+
+Loop Execution:
+
+Initial: res = 1
+
+i = 0 → res = 1 * 3 = 3  
+i = 1 → res = 3 * 3 = 9  
+i = 2 → res = 9 * 3 = 27  
+i = 3 → res = 27 * 3 = 81  
+
+✅ Final Output:
+3^4 = 81
+
+//////////////////////////////////////////////////////////////////

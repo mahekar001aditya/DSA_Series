@@ -1,0 +1,73 @@
+
+int power(int x, int n) {
+    
+    if (n == 0) {
+        return 1;                // base case: x^0 = 1
+    }
+    
+    int temp = power(x, n / 2);  // recursive call: divide power by 2
+    
+    temp = temp * temp;          // square the half power result
+    
+    if (n % 2 == 0)
+        return temp;             // if exponent is even
+    else
+        return temp * x;         // if exponent is odd
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+power(3, 5)
+   |
+   |--> temp = power(3, 2)     => 3*3  =>   9                                 (5 / 2 = 2)
+   |        |
+   |        |--> temp = power(3, 1)  =>  3                                    (2 / 2 = 1)
+   |        |        |
+   |        |        |--> temp = power(3, 0)  => 1                            (1 / 2 = 0)
+   |        |        |
+   |        |        |--> return 3                                 //  1*3 = 3   (base case)
+   |        |
+   |        |--> return 3*3
+   |
+   |--> return (3*3) * (3*3)*3
+..........................................................................
+
+power(3, 5)
+   |
+   |-- n is odd →
+   |   power(3, 4) * 3
+   |         |
+   |         |-- n is even →
+   |         |   power(3, 2) * power(3, 2)
+   |         |          |
+   |         |          |-- n is even →
+   |         |          |   power(3, 1) * power(3, 1)
+   |         |                 |
+   |         |                 |-- n is odd →
+   |         |                 |   power(3, 0) * 3
+   |         |                        |
+   |         |                        |-- return 1
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+power(3,0) = 1
+
+power(3,1) = 1 * 3 = 3
+
+power(3,2) = 3 * 3 = 9
+
+power(3,4) = 9 * 9 = 81
+
+power(3,5) = 81 * 3 = 243
+
+--------------------------------------------------------------------------
+power(x,n) =>    if(n%2 == 0){
+                        power(x,n/2) * power(x,n/2);
+                 }
+
+                 else{
+                        power(x,n-1) * x;
+                 }
+
+//////////////////////////////////////////////////////////////////////////

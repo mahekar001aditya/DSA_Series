@@ -1,0 +1,23 @@
+class Solution {
+    public int reverseExponentiation(int n) {
+        
+        int rev = 0;          // store reverse of number
+        int temp = n;         // copy of original number
+        
+        // reversing the number 
+        while (temp > 0) {
+            int ld = temp % 10;      // get last digit
+            rev = rev * 10 + ld;     // build reverse
+            temp = temp / 10;           // remove last digit
+        }
+        
+        int res = 1;          // store final result
+        
+        // calculating n^rev
+        for (int i = 0; i < rev; i++) {
+            res = res * n;    // multiply n repeatedly
+        }
+        
+        return res;           // return final answer
+    }
+}

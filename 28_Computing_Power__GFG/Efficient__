@@ -1,0 +1,43 @@
+
+int power(int x, int n) {
+    
+    if (n == 0) {
+        return 1;                // base case: x^0 = 1
+    }
+    
+    int temp = power(x, n / 2);  // recursive call: divide power by 2
+    
+    temp = temp * temp;          // square the half power result
+    
+    if (n % 2 == 0)
+        return temp;             // if exponent is even
+    else
+        return temp * x;         // if exponent is odd
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+power(3, 5)
+   |
+   |--> temp = power(3, 2)                                      (5 / 2 = 2)
+   |        |
+   |        |--> temp = power(3, 1)                              (2 / 2 = 1)
+   |        |        |
+   |        |        |--> temp = power(3, 0)                       (1 / 2 = 0)
+   |        |        |
+   |        |        |--> return 3    (base case)
+   |        |
+   |        |--> return 3*3
+   |
+   |--> return (3*3) * (3*3)*3
+
+--------------------------------------------------------------------------
+power(x,n) =>    if(n%2 == 0){
+                        power(x,n/2) * power(x,n/2);
+                 }
+
+                 else{
+                        power(x,n-1) * x;
+                 }
+
+//////////////////////////////////////////////////////////////////////////

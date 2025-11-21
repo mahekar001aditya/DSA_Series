@@ -1,0 +1,86 @@
+
+int power(int x, int n) {
+    
+    int res = 1;              // stores final result, initialized to 1
+    
+    while (n > 0) {
+        
+        if (n % 2 != 0) {     // if n is odd (LSB is 1)
+            res = res * x;    // multiply result with current base
+        }
+        
+        x = x * x;            // square the base for next bit
+        n = n / 2;            // move to next bit (right shift)
+    }
+    
+    return res;               // return final power value
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Initial:
+x = 4, n = 5, res = 1
+
+1st Iteration:
+n = 5 (odd)  → res = 1 * 4  = 4
+                x = 4 * 4   = 16
+                n = 5 / 2   = 2
+
+2nd Iteration:
+n = 2 (even) → res = 4      (no change)
+                x = 16 * 16 = 256
+                n = 2 / 2   = 1
+
+3rd Iteration:
+n = 1 (odd)  → res = 4 * 256 = 1024
+                x = 256 * 256 = 65536
+                n = 1 / 2    = 0
+
+Loop Ends (n == 0)
+
+Final Answer:
+4^5 = 1024
+
+For example:
+5 =     0     1     0     1
+      (4^8) (4^4) (4^2) (4^1)
+
+res = 4^4  *  4^1
+
+==============================================================================================
+
+┌──────────────────────────────────────────────────────────────┐
+│ Key Concepts                                                 │
+├──────────────────────────────────────────────────────────────┤
+│ • Every number can be written as sum of powers of 2          │
+│ • (Using set bits in binary representation)                  │
+│ • We can traverse bits from LSB to MSB in O(log n) time      │
+└──────────────────────────────────────────────────────────────┘
+
+_________________________________________________________________________________
+
+Power using Binary Form
+------------------------
+3^10 = 3^8  *  3^2           |       10 = 1010  
+3^19 = 3^16 * 3^2 * 3^1      |       19 = 10011  
+
+
+10 =    1     0     1     0
+      (3^8) (3^4) (3^2) (3^1)
+__________________________________________________________________________________
+Bit Traversal Logic
+---------------------
+While (n > 0) {
+
+    if (n % 2 != 0)
+        → Bit is 1
+    else
+        → Bit is 0
+
+    n = n / 2;
+    x= x * x;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////

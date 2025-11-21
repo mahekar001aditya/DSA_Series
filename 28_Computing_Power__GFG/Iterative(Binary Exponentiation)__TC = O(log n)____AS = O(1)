@@ -5,12 +5,12 @@ int power(int x, int n) {
     
     while (n > 0) {
         
-        if (n % 2 != 0) {     // if n is odd (LSB is 1)
+        if (n % 2 != 0) {     // if n is odd (LSB is 1)                                     //  more optimized (n & 1)   only for CPP
             res = res * x;    // multiply result with current base
         }
         
         x = x * x;            // square the base for next bit
-        n = n / 2;            // move to next bit (right shift)
+        n = n / 2;            // move to next bit (right shift)                            // n = n >> 1;
     }
     
     return res;               // return final power value

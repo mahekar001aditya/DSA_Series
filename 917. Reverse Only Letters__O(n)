@@ -1,0 +1,73 @@
+class Solution {
+
+    public String reverseOnlyLetters(String s) {
+
+        // initialize left and right pointers
+        int x = 0, y = s.length() - 1;
+
+        // convert string to char array
+        char[] sa = s.toCharArray();
+
+        // loop until pointers meet
+        while (x < y) {
+
+            boolean leftIsLetter =                     // check left character
+                (sa[x] >= 'A' && sa[x] <= 'Z') ||
+                (sa[x] >= 'a' && sa[x] <= 'z');
+
+            boolean rightIsLetter =                    // check right character
+                (sa[y] >= 'A' && sa[y] <= 'Z') ||
+                (sa[y] >= 'a' && sa[y] <= 'z');
+
+            if (leftIsLetter && rightIsLetter) {        // if both are letters
+                char temp = sa[x];                      // store left char
+                sa[x] = sa[y];                          // copy right to left
+                sa[y] = temp;                           // copy temp to right
+                x++;                                    // move left pointer
+                y--;                                    // move right pointer
+            }
+            else if (!rightIsLetter) {                  // if right is not a letter
+                y--;                                    // move right pointer
+            }
+            else if (!leftIsLetter) {                   // if left is not a letter
+                x++;                                    // move left pointer
+            }
+        }
+
+        return new String(sa);                          // return final string
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+917. Reverse Only Letters
+
+Given a string s, reverse the string according to the following rules:
+
+All the characters that are not English letters remain in the same position.
+All the English letters (lowercase or uppercase) should be reversed.
+Return s after reversing it.
+
+Example 1:
+
+Input: s = "ab-cd"
+Output: "dc-ba"
+Example 2:
+
+Input: s = "a-bC-dEf-ghIj"
+Output: "j-Ih-gfE-dCba"
+Example 3:
+
+Input: s = "Test1ng-Leet=code-Q!"
+Output: "Qedo1ct-eeLg=ntse-T!"
+ 
+
+Constraints:
+
+1 <= s.length <= 100
+s consists of characters with ASCII values in the range [33, 122].
+s does not contain '\"' or '\\'.
+
+/////////////////////////////////////////////////////////////////////////////////
+

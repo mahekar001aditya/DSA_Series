@@ -1,0 +1,49 @@
+# Bitwise AND[ & ]: 
+
+class Main {
+    public static void main(String[] args) {
+        int x = 3;
+        int y = 6;
+        
+        System.out.println(x&y);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////
+
+
+# AND Operation Table and Example
+
+## AND Truth Table
+-----------------
+| A | B | A & B |
+|---|---|-------|
+| 0 | 0 |   0   |
+| 0 | 1 |   0   |
+| 1 | 0 |   0   |
+| 1 | 1 |   1   |
+-----------------
+## Example with x=3 and y=6
+
+**Binary Representation:**
+- x = 3 = `0011` in binary (4 bits)
+- y = 6 = `0110` in binary (4 bits)
+
+**Bitwise AND Operation:**
+
+        0011 (3)
+        & 0110 (6)
+        ----------
+        0010 (2)
+
+
+**Result:**
+- `3 & 6 = 2`
+- The output will be: `2`
+
+**Explanation:**
+- Only the second bit from right is 1 in both numbers
+- All other bits have at least one 0, resulting in 0
+
+////////////////////////////////////////////////////////////
+

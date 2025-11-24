@@ -1,0 +1,44 @@
+# Bitwise NOR[~]:
+
+
+class Main {
+    public static void main(String[] args) {
+        int x = 3;
+
+        System.out.println(~x);
+    }
+}
+
+///////////////////////////////////////////////
+
+# NOT Operation Table and Example
+
+## NOT Truth Table
+| A | ~A |
+|---|----|
+| 0 |  1 |
+| 1 |  0 |
+
+## Example with x=3
+
+**Binary Representation:**
+- x = 3 = `00000000 00000000 00000000 00000011` in binary (32 bits)
+
+**Bitwise NOT Operation:**
+~ 00000000 00000000 00000000 00000011 (3)
+
+11111111 11111111 11111111 11111100 (-4)
+
+
+**Result:**
+- `~3 = -4`
+- The output will be: `-4`
+
+**Explanation:**
+- NOT flips all bits (0 becomes 1, 1 becomes 0)
+- In two's complement system:
+  - Positive 3: `000...0011`
+  - After NOT: `111...1100` which represents -4
+- Formula: `~x = -x - 1` → `~3 = -3 - 1 = -4`
+
+///////////////////////////////////////////////

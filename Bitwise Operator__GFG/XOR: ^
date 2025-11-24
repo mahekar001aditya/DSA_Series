@@ -1,0 +1,47 @@
+# Bitwise XOR[^] :
+
+
+class Main {
+    public static void main(String[] args) {
+        int x = 3;
+        int y = 6;
+        
+        System.out.println(x^y);
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+# XOR Operation Table and Example
+
+## XOR Truth Table
+| A | B | A ^ B |
+|---|---|-------|
+| 0 | 0 |   0   |
+| 0 | 1 |   1   |
+| 1 | 0 |   1   |
+| 1 | 1 |   0   |
+
+## Example with x=3 and y=6
+
+**Binary Representation:**
+- x = 3 = `0011` in binary (4 bits)
+- y = 6 = `0110` in binary (4 bits)
+
+**Bitwise XOR Operation:**
+        0011 (3)
+        ^ 0110 (6)
+       -----------
+        0101 (5)
+
+**Result:**
+- `3 ^ 6 = 5`
+- The output will be: `5`
+
+**Explanation:**
+- Bits are set to 1 when corresponding bits are different
+- Bits are set to 0 when corresponding bits are the same
+- Binary `0101` = 1 + 4 = 5 in decimal
+
+//////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,45 @@
+# Bitwise OR[|] :
+
+class Main {
+    public static void main(String[] args) {
+        int x = 3;
+        int y = 6;
+        
+        System.out.println(x|y);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+# OR Operation Table and Example
+
+## OR Truth Table
+| A | B | A | B |
+|---|---|--------|
+| 0 | 0 |   0    |
+| 0 | 1 |   1    |
+| 1 | 0 |   1    |
+| 1 | 1 |   1    |
+
+## Example with x=3 and y=6
+
+**Binary Representation:**
+- x = 3 = `0011` in binary (4 bits)
+- y = 6 = `0110` in binary (4 bits)
+
+**Bitwise OR Operation:**
+        0011 (3)
+      | 0110 (6)
+        -----------
+        0111 (7)
+
+**Result:**
+- `3 | 6 = 7`
+- The output will be: `7`
+
+**Explanation:**
+- Bits are set to 1 if at least one corresponding bit is 1
+- Result has bits set at positions: 1, 2, and 4 (from right)
+- Binary `0111` = 1 + 2 + 4 = 7 in decimal
+
+////////////////////////////////////////////////////////////////////////

@@ -51,10 +51,6 @@ Two's Complement Formulas
 Calculation for ~2:
 
 Method 1 - Two's complement formula:
-~2 = 2³² - 1 - 2
-   = 4,294,967,295 - 2
-   = 4,294,967,293 (unsigned)
-   = -3 (signed interpretation)
 
 Method 2 - Quick formula:
 ~2 = -2 - 1 = -3

@@ -1,0 +1,30 @@
+
+# Bitwise Signed Right Shift[ >> ]:
+class Main {
+    public static void main(String[] args) {
+        int x = 33;
+
+        System.out.println(x >> 1);
+        System.out.println(x >> 4);
+    
+
+    }
+}
+//////////////////////////////////////////////////////////////////////////
+
+Definition: A bitwise operation that shifts all bits of a number to the right by specified positions, while preserving the sign bit (the leftmost bit). Also known as arithmetic right shift.
+
+| Expression | Binary Operation (32-bit)                           | Result (Decimal) |
+|------------|----------------------------------------------------|------------------|
+| 33 >> 1    | 00000000 00000000 00000000 00100001 >> 1           | 17               |
+|            | → 00000000 00000000 00000000 00010001              |                  |
+| 33 >> 4    | 00000000 00000000 00000000 00100001 >> 4           | 2                |
+|            | → 00000000 00000000 00000000 00000010              |                  |
+
+
+Verification:
+33 >> 1 = 33 / 2 = 16 (integer division) = 17 ✓
+
+33 >> 4 = 33 / 16 = 2 (integer division) = 2 ✓
+
+//////////////////////////////////////////////////////////////////////////

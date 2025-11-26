@@ -1,5 +1,4 @@
 
-
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
 
@@ -24,7 +23,6 @@ class Solution {
         return head;                         // return modified list
     }
 }
-
 
 //////////////////////////////////////////////////////////////////////
 

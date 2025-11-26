@@ -1,0 +1,89 @@
+
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+
+        if (head == null) { 
+            return null;                     // if list is empty, return null
+        }
+
+        ListNode cur = head.next;            // current node points to second node
+        ListNode prev = head;                // prev starts from first node
+        
+        while (cur != null) {                // traverse until end of list
+
+            if (prev.val == cur.val) {       // if duplicate value found
+                prev.next = cur.next;        // skip duplicate node
+                cur = prev.next;             // move cur to the next valid node
+            } 
+            else {
+                prev = cur;                  // move prev forward
+                cur = cur.next;              // move cur forward
+            }
+        }
+        return head;                         // return modified list
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////
+
+## Step-by-Step Example:
+
+Let's trace with input: [1|·] → [1|·] → [2|·] → [3|·] → [3|·]
+
+Initial State:
+                                                            head → [1|·] → [1|·] → [2|·] → [3|·] → [3|·] → null
+                                                                    ↑       ↑
+                                                                   prev    cur
+
+Step 1: prev.val(1) == cur.val(1) → DUPLICATE
+        prev.next = cur.next  // Skip the duplicate
+                                                            head → [1|·] → [2|·] → [3|·] → [3|·] → null
+                                                                    ↑       ↑
+                                                                   prev    cur (moved to prev.next)
+
+Step 2: prev.val(1) != cur.val(2) → UNIQUE
+        Move both pointers forward:
+                                                            head → [1|·] → [2|·] → [3|·] → [3|·] → null
+                                                                            ↑       ↑
+                                                                           prev    cur
+
+Step 3: prev.val(2) != cur.val(3) → UNIQUE
+        Move both pointers forward:
+                                                            head → [1|·] → [2|·] → [3|·] → [3|·] → null
+                                                                                    ↑       ↑
+                                                                                   prev    cur
+
+Step 4: prev.val(3) == cur.val(3) → DUPLICATE
+        prev.next = cur.next  // Skip the duplicate
+                                                            head → [1|·] → [2|·] → [3|·] → null
+                                                                                    ↑       ↑
+                                                                                   prev    cur (now null)
+Final Result:
+
+                                                            head → [1|·] → [2|·] → [3|·] → null
+
+/////////////////////////////////////////////////////////////////////
+
+83. Remove Duplicates from Sorted List
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+
+ 
+
+Example 1:
+            Input: head = [1,1,2]
+            Output: [1,2]
+
+Example 2:
+            Input: head = [1,1,2,3,3]
+            Output: [1,2,3]
+ 
+
+Constraints:
+
+The number of nodes in the list is in the range [0, 300].
+-100 <= Node.val <= 100
+The list is guaranteed to be sorted in ascending order.
+
+//////////////////////////////////////////////////////////////////////

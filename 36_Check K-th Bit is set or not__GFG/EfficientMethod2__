@@ -1,0 +1,127 @@
+void isKthSet(int n, int k) {
+    int x = (n >> (k - 1));        // Right-shift n so that k-th bit moves to LSB position
+
+    if ((x & 1) != 0)              // Check LSB → if it is 1, then k-th bit was set
+        print("Yes");             // k-th bit is 1
+    else
+        print("No");              // k-th bit is 0
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+# ✅ **How it works (Simple Explanation)**
+
+To check the **k-th bit**:
+
+1. **Shift n right by (k-1)** positions  
+   This moves the **k-th bit to the least significant bit (LSB)**.
+
+   Example:  
+             n = `10110` (22), k = 3  
+             Right shift by 2 → `101`  
+
+2. Check if the new LSB is 1:
+
+(x & 1)
+- If result ≠ 0 → k-th bit was **1**
+- Else → k-th bit was **0**
+
+---
+
+If you want, I can also show this with a **binary diagram** or compare:
+
+- Left-shift method  
+- Right-shift method  
+- Mask method (`1 << (k-1)`)
+
+---
+
+If you want, I can also rewrite this in **optimized code**, **bit shifting method**, or with a **diagram**.
+# How do you check the bit?
+
+        if((n&1) != 0)
+          print("Yes")
+        else
+          print("No")
+
+# How do you check the kth bit?
+-> We mainly need to do bitwise AND with the number with only kth bit set 00...010...00
+                                                                                ↑
+                                                                              kth bit
+
+┌─────────────────────────────────────────────────────────────┐
+│                   BIT CHECKING PROCESS                      │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Start: x = 1  (2⁰)    → binary: 0001                       │
+│  1st:   x = 2  (2¹)    → binary: 0010                       │
+│  2nd:   x = 4  (2²)    → binary: 0100                       │
+│  3rd:   x = 8  (2³)    → binary: 1000                       │
+│  ...                                                        │
+│  k-th:  x = 2ᵏ         → binary: 1 followed by k zeros      │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│                   FINAL CHECK:                              │
+│_____________________________________________________________│
+│  (n & x) → Checks if the k-th bit is set in n               │
+│                                                             │
+│  • If (n & x) ≠ 0 → k-th bit is 1 (SET)                     │
+│  • If (n & x) = 0 → k-th bit is 0 (NOT SET)                 │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+.............................................................................................
+Example 1: n = 13 (1101), k = 2
+text
+n = 13 (binary: 1101)
+k = 2
+
+Loop: i=0 to i<2
+  i=0: x = 1*2 = 2  (binary: 0010)
+  i=1: x = 2*2 = 4  (binary: 0100) ← Reached k-th bit!
+
+After loop: x = 4 (binary: 0100)
+Check: n & x = 1101 & 0100 = 0100 ≠ 0 → return true ✅
+````````````````````````````````````````````````````````````````````````````````````````````
+n = 5 (0...0101)
+k =3
+
+After Loop:
+            x = 4 (0...0100)
+            
+                0...0101
+              &  0...0100
+             -------------
+                0....0100 (Representation of 4)
+    
+    
+---------------------------------------------------------------------------------------------
+
+Check K-th Bit
+
+Difficulty: Easy
+Given two positive integer n and  k, check if the kth index bit of n is set or not.
+Note: A bit is called set if it is 1. 
+
+Examples : 
+
+Input: n = 4, k = 0
+Output: false
+Explanation: Binary representation of 4 is 100, in which 0th index bit from LSB is not set. So, return false.
+
+Input: n = 4, k = 2
+Output: true
+Explanation: Binary representation of 4 is 100, in which 2nd index bit from LSB is set. So, return true.
+
+Input: n = 500, k = 3
+Output: false
+Explanation: Binary representation of 500 is 111110100, in which 3rd index bit from LSB is not set. So, return false.
+
+Constraints:
+1 ≤ n ≤ 109
+0 ≤ k ≤ 31
+
+////////////////////////////////////////////////////////////////////////////////
+

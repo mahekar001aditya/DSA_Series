@@ -1,19 +1,40 @@
 
-voidisSet(int n,int k){
-  int x = 1;
+void isSet(int n, int k) {
+    int x = 1;                          // Start with 1 (2^0)
 
-  for(int i =0 ;i<(k-1);i++)
-    x = x * 2;
+    for (int i = 0; i < (k - 1); i++)   // Compute x = 2^(k-1)
+        x = x * 2;
 
-  if((n&x) != 0)
-    print("Yes");
-  els
-    print("No");
+    if ((n & x) != 0)                   // Bitwise AND → check k-th bit
+        print("Yes");                  // If non-zero → k-th bit is set
+    else
+        print("No");                   // Otherwise → k-th bit is not set
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 # Idea:
 
+we reduce n to ⌊ n / (2^k − 1) ⌋
+
+---
+
+# ✅ **Explanation (Simple)**
+
+- This function checks whether the **k-th bit** (from the right, starting at 1) of number **n** is **set** (1).
+- It builds a mask `x = 2^(k-1)`  
+  Example: k = 3 → x = 4 → binary: `0100`
+- Then it performs:
+
+n & x
+
+
+- If this result is **non-zero**, the k-th bit is **set** → print "Yes"
+- Else → print "No"
+
+---
+
+If you want, I can also rewrite this in **optimized code**, **bit shifting method**, or with a **diagram**.
 # How do you check the bit?
 
         if((n&1) != 0)

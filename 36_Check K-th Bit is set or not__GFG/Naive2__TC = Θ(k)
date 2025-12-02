@@ -28,7 +28,6 @@ we reduce n to ⌊ n / (2^k − 1) ⌋
 
 n & x
 
-
 - If this result is **non-zero**, the k-th bit is **set** → print "Yes"
 - Else → print "No"
 

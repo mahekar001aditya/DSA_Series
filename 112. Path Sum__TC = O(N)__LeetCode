@@ -1,0 +1,167 @@
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+
+        if(root == null)
+            return false;
+
+        Stack<TreeNode> path = new Stack<>();     // stores nodes to visit
+        Stack<Integer> sumpath = new Stack<>();   // stores running sum of path
+
+        path.push(root);               // push first node
+        sumpath.push(root.val);        // push initial sum
+
+        while(!path.isEmpty()){        // iterate until stack is empty
+            
+            TreeNode tmp = path.pop();   // get top node
+            int tmsp = sumpath.pop();    // get its path sum
+
+            // ✔ If leaf AND sum matches → return true
+            if(tmp.left == null && tmp.right == null && tmsp == targetSum){
+                return true;
+            }
+
+            // push RIGHT first so LEFT gets processed first (DFS)
+            if(tmp.right != null){
+                path.push(tmp.right);
+                sumpath.push(tmp.right.val + tmsp);
+            }
+
+            // push LEFT child
+            if(tmp.left != null){
+                path.push(tmp.left);
+                sumpath.push(tmp.left.val + tmsp);
+            }
+        }
+        return false;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
+
+# TREE (target = 22)
+#          5(root)
+#         /       \
+#    4(L)          8(R)
+#   /             /    \
+# 11(L)        13(L)   4(R)
+# /   \
+#7(L) 2(R)
+
+################################################################
+# STEP 1: INITIAL PUSH
+
+Traverse:  (START at ROOT) → 5
+
+  NODE STACK (Top ↓)         SUM STACK (Top ↓)
+      ┌─────┐                    ┌─────┐
+      │  5  │                    │  5  │ ← = 5
+      └─────┘                    └─────┘
+
+################################################################
+# STEP 2: POP 5 and PUSH 4 & 8
+
+Traverse:  POP → 5  
+           PUSH Right → 8  
+           PUSH Left  → 4
+
+  NODE STACK (Top ↓)         SUM STACK (Top ↓)
+      ┌─────┐                    ┌─────┐
+      │  4  │                    │  9  │ ← 4+5
+      ├─────┤                    ├─────┤
+      │  8  │                    │ 13  │ ← 8+5
+      └─────┘                    └─────┘
+
+################################################################
+# STEP 3: POP 4 and PUSH 11
+
+Traverse:  POP → 4 (L of 5)  
+           PUSH Left → 11
+
+  NODE STACK (Top ↓)         SUM STACK (Top ↓)
+      ┌─────┐                    ┌─────┐
+      │ 11  │                    │ 20  │ ← 11+9
+      ├─────┤                    ├─────┤
+      │  8  │                    │ 13  │
+      └─────┘                    └─────┘
+
+################################################################
+# STEP 4: POP 11 and PUSH 7 & 2
+
+Traverse:  POP → 11  
+           PUSH Right → 2  
+           PUSH Left  → 7
+
+  NODE STACK (Top ↓)         SUM STACK (Top ↓)
+      ┌─────┐                    ┌─────┐
+      │  7  │                    │ 27  │ ← 7+20
+      ├─────┤                    ├─────┤
+      │  2  │                    │ 22  │ ← 2+20 ⭐ (match)
+      ├─────┤                    ├─────┤
+      │  8  │                    │ 13  │
+      └─────┘                    └─────┘
+
+################################################################
+# STEP 5: POP 7 (not match)
+
+Traverse:  POP → 7 (L of 11)  
+           (Leaf but 27 ≠ 22)
+
+  NODE STACK (Top ↓)         SUM STACK (Top ↓)
+      ┌─────┐                    ┌─────┐
+      │  2  │                    │ 22  │ ← ⭐ target found here!
+      ├─────┤                    ├─────┤
+      │  8  │                    │ 13  │
+      └─────┘                    └─────┘
+
+################################################################
+# STEP 6: POP 2 — MATCH!!!
+
+Traverse:  POP → 2 (R of 11)  
+           Leaf AND sum=22 → RETURN TRUE ✔
+
+################################################################
+# RESULT: PATH FOUND → 5 → 4 → 11 → 2 = 22 ✔
+
+//////////////////////////////////////////////////////////////////////
+
+112. Path Sum
+
+Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+
+A leaf is a node with no children.
+
+ 
+
+Example 1:
+
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+Output: true
+Explanation: The root-to-leaf path with the target sum is shown.
+
+
+Example 2:
+
+Input: root = [1,2,3], targetSum = 5
+Output: false
+Explanation: There are two root-to-leaf paths in the tree:
+(1 --> 2): The sum is 3.
+(1 --> 3): The sum is 4.
+There is no root-to-leaf path with sum = 5.
+
+
+Example 3:
+
+Input: root = [], targetSum = 0
+Output: false
+Explanation: Since the tree is empty, there are no root-to-leaf paths.
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 5000].
+-1000 <= Node.val <= 1000
+-1000 <= targetSum <= 1000
+
+//////////////////////////////////////////////////////////////////////
+
+

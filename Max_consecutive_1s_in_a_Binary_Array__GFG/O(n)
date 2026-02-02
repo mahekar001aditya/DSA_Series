@@ -1,0 +1,47 @@
+
+
+int maxConsecutiveOnes(boolean arr[]){
+			int res = 0;                                  // store maximum consecutive 1s
+			int n = arr.length;
+
+			for(int i = 0; i < n; i++){                       // start from each index
+				int curr = 0;                                  
+
+    				if(arr[i] == 0){                             // if 0 then reset the curr
+                curr = 0;
+            }
+            else{
+                curr++;
+        				res = Math.max(curr, res);                         // update maximum streak if needed
+            }
+
+			}
+
+			return res;                                        // return the maximum consecutive 1s
+}
+
+//////////////////////////////////////////////
+
+arr[] = [0,1,1,1,0,1,1]     res = 0  curr = 0
+
+i=0, curr=0
+i=1, curr=1, res=1
+i=2, curr=2, res=2
+i=3, curr=3, res=3
+i=4, curr=0
+i=5, curr=1
+i=6, curr=2
+
+//////////////////////////////////////////////
+
+I/p : arr[] = [0,1,1,0,1,0]
+o/p : 2
+
+I/p : arr[] = [1,1,1,1]
+o/p : 4
+
+I/p : arr[] = [0,0,0]
+o/p : 0
+
+I/p : arr[] = [1,0,1,1,1,1,0,1,1]
+o/p : 4

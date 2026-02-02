@@ -37,3 +37,17 @@ Output:
 Explanation: 3 appears 2 times. 2 appears 2 times. 1 appears 1 time, and 4 appears 1 time. So in sorted order we write elements and their frequencies.
 Constraints:
 1 ≤ arr.size() ≤ 104
+
+//////////////////////////////////////////////
+
+arr[] = [10,10,10,30,300,40]
+initially: freq = 1
+
+i=1 : freq = 2
+i=2 : freq = 3
+i=3 : print(10 3), freq = 1
+i=4 : freq = 2
+i=5 : print(30 2), freq = 1
+
+After loop: print(40,1)
+

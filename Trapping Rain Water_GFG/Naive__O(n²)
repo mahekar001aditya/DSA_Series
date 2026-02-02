@@ -1,0 +1,106 @@
+
+class Solution {
+    public int maxWater(int arr[]) {
+        int res = 0;                       // total trapped water
+        int n = arr.length;                // array size
+        
+        for(int i = 1; i < n - 1; i++) {
+            int lmax = arr[i];                // assume ith element has lmax
+            int rmax = arr[i];               // assume ith element has rmax
+            
+            for(int j = 0; j < i; j++)               // max height on left   
+                lmax = Math.max(lmax, arr[j]);
+            
+            for(int j = i + 1; j < n; j++)               // max height on right
+                rmax = Math.max(rmax, arr[j]);
+            
+            res += Math.min(lmax, rmax) - arr[i];        // water at index i
+        }
+        return res;
+    }
+}
+
+
+////////////////////////////////////////////////
+
+Key Formula:
+
+water[i] = min(maxLeft, maxRight) - height[i]
+
+////////////////////////////////////////////////
+
+Trapping Rain Water
+
+Given an array arr[] with non-negative integers representing the height of blocks. If the width of each block is 1, compute how much water can be trapped between the blocks during the rainy season. 
+
+Examples:
+
+Input: arr[] = [3, 0, 1, 0, 4, 0 2]
+Output: 10
+Explanation: Total water trapped = 0 + 3 + 2 + 3 + 0 + 2 + 0 = 10 units.
+
+Input: arr[] = [3, 0, 2, 0, 4]
+Output: 7
+Explanation: Total water trapped = 0 + 3 + 1 + 3 + 0 = 7 units.
+
+Input: arr[] = [1, 2, 3, 4]
+Output: 0
+Explanation: We cannot trap water as there is no height bound on both sides.
+
+Input: arr[] = [2, 1, 5, 3, 1, 0, 4]
+Output: 9
+Explanation: Total water trapped = 0 + 1 + 0 + 1 + 3 + 4 + 0 = 9 units.
+
+Constraints:
+
+1 < arr.size() < 105
+0 < arr[i] < 103
+## Trapping Rain Water (Numbered Diagram)
+
+////////////////////////////////////////////////////
+
+**Input:** `arr[] = [3, 0, 1, 0, 4, 0, 2]`  
+**Output:** `10`
+
+Legend  
+- `█` = Building  
+- `░` = Water (number = unit count order)
+
+---
+
+### Elevation Map (with numbered water units)
+
+Height
+4 | █
+3 | █ ░3 ░5 ░8 █
+2 | █ ░2 ░4 ░7 █ ░10
+1 | █ ░1 █ ░6 █ ░9
+0 +--------------------
+0 1 2 3 4 5 6
+
+
+---
+
+### Index-wise Water Trapped
+
+Index : 0 1 2 3 4 5 6
+Height: 3 0 1 0 4 0 2
+Water : 0 3 2 3 0 2 0
+
+
+---
+
+### Total Water
+
+= 3 + 2 + 3 + 2
+= 10 units
+
+
+---
+
+### Visual Meaning
+- Water fills **layer by layer**
+- Each `░number` represents **1 unit of trapped water**
+- Numbers show **count order**, not index
+
+////////////////////////////////////////////////////////////////////

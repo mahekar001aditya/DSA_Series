@@ -1,0 +1,62 @@
+
+// Recursive function to find maximum profit with multiple transactions
+
+
+int maxProfit(int price[], int start, int end) {
+
+    if (end <= start)                   // Base case: no profit possible
+        return 0;
+
+    int profit = 0;
+
+    for (int i = start; i < end; i++) {                                      // Try every buy day
+        for (int j = i + 1; j <= end; j++) {                              // Try every sell day after buy
+            if (price[j] > price[i]) {                                     // Only consider profitable trades
+                int currProfit = price[j] - price[i]                    // Profit from current trade
+                                 + maxProfit(price, start, i - 1)                // Profit from left segment
+                                 + maxProfit(price, j + 1, end);                 // Profit from right segment
+                profit = Math.max(profit, currProfit);                                 // Keep maximum
+            }
+        }
+    }
+    return profit;                                                                // Return maximum profit
+}
+
+
+
+//////////////////////////////////////////////////////
+
+Input: prices[] = [1,5,3,8,12]
+Output: 13
+
+[1,5,3,8,12]
+
+Buy 1
+ ├─ Sell 5 → Profit 4 → Recurse [3,8,12]
+ │      ├─ Buy 3 Sell 8 → Profit 5 → Recurse [12]
+ │      │      └─ Buy 12 → no sell → 0
+ │      └─ Buy 3 Sell 12 → Profit 9
+ ├─ Sell 8 → Profit 7 → Recurse left/right
+ └─ Sell 12 → Profit 11 → Recurse left/right
+
+Max Profit = 13
+
+//////////////////////////////////////////////////////
+
+
+Stock Buy and Sell
+
+Given an array prices[] of non-negative integers, representing the prices of the stocks on different days. The task is to find the maximum profit possible by buying and selling the stocks on different days. Here one transaction means 1 buy + 1 Sell. If it is not possible to make a profit then return 0.
+
+Note: Stock must be bought before being sold.
+
+Examples:
+
+Input: prices[] = [1,5,3,8,12]
+Output: 13
+
+Constraint:
+1 ≤  prices.size() ≤  105
+0 ≤  prices[i] ≤  104
+
+

@@ -1,0 +1,39 @@
+class Solution {
+    public static void freqSorted(int arr[]) {
+        int n=arr.length;          // array size
+        int freq=1,i=1;            // frequency counter
+        
+        Arrays.sort(arr);          // sort array
+        
+        while(i<n){
+            if(arr[i]==arr[i-1]) freq++;          // same element
+            else{
+                System.out.print(arr[i-1]+" "+freq+"\n"); // print result
+                freq=1;                            // reset count
+            }
+            i++;
+        }
+
+        if(n==1 || aarr[n-1] != arr[n-2]){                    //if last element and second last element is not same
+                System.out.print(arr[n-1]+" "+freq+"\n");     // last element
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
+Sorted Frequency
+
+You are given an integer array arr[]. You need to print the distinct elements of array in sorted order(increasing) together with their frequency.
+Note: Print each element in a new line.
+
+Example:
+
+Input: arr[] = [3, 3, 2, 2, 1, 4]
+Output:
+1 1
+2 2
+3 2
+4 1
+Explanation: 3 appears 2 times. 2 appears 2 times. 1 appears 1 time, and 4 appears 1 time. So in sorted order we write elements and their frequencies.
+Constraints:
+1 ≤ arr.size() ≤ 104

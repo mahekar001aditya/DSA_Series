@@ -1,0 +1,71 @@
+
+class Solution {
+    public List<String> AllPossibleStrings(String s) {
+       
+       ArrayList<String> li = new ArrayList<>();      // store all subsets (strings)
+       
+       int n = s.length();                            // length of input string
+       int psize = (1 << n);                          // total subsets = 2^n
+       
+       for(int i=0;i<psize;i++){                      // iterate over all bitmasks
+           String t = "";                             // current subset string
+           
+           for(int j=0;j<n;j++){                      // check each bit
+               if((i & (1 << j)) != 0){               // if jth bit is set
+                   t += s.charAt(j);                  // include character
+               }
+           }
+           li.add(t);                                 // add formed subset
+       }
+       
+       Collections.sort(li);                          // lexicographical order
+       return li;                                     // return power set
+    }
+}
+
+/////////////////////////////////////////////////////
+
+s = "abc"  n=3
+
+we consider binary representations of number from 0 to 7
+
+0  000  " "
+1  001  "a"
+2  010  "b"
+3  011  "ab"
+4  100  "c"
+5  101  "ac"
+6  110  "bc"
+7  111  "abc"
+
+/////////////////////////////////////////////////////
+
+Power Set
+Given a string s of length n, find all the possible non-empty subsequences of the string s in lexicographically-sorted order.
+
+Example 1:
+Input : 
+  s = "abc"
+Output: 
+  a ab abc ac b bc c
+Explanation : 
+  There are a total 7 number of subsequences possible for the given string, and they are mentioned above in lexicographically sorted order.
+
+Example 2:
+Input: 
+  s = "aa"
+Output: 
+  a a aa
+Explanation : 
+  There are a total 3 number of subsequences possible for the given string, and they are mentioned above in lexicographically sorted order.
+
+Your Task:
+  You don't need to read input or print anything. Your task is to complete the function AllPossibleStrings() which takes a string s as the input parameter and returns a list of all possible subsequences (non-empty) that can be formed from s in lexicographically sorted order.
+
+Expected Time Complexity: O( n*2n  )
+Expected Space Complexity: O( n * 2n )
+
+Constraints: 
+
+1 <= n <= 16
+s constitutes of lower case english alphabets

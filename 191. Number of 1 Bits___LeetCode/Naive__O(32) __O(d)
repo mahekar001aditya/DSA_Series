@@ -1,0 +1,71 @@
+class Solution {
+    public int hammingWeight(int n) {
+        int res = 0;                		                                                                                             	// count of set bits
+        while(n > 0){              			                                                                                      // loop till n becomes 0
+            if(n % 2 != 0){         OR        if(n % 2 == 1){           OR      if((n & 1) != 0){  	                             // check last bit
+                res++;              		                      	                                                                   // increment count
+            }
+            n = n / 2;              		                                                                                   	// right shift by 1
+        }
+          return res;                		                                                        	                         // return result
+    }  
+}
+
+
+/////////////////////////////////////////////////////////////
+
+n=5(00....0101)  res=0
+
+I Loop:
+res=1    n=2(00...010)
+
+II Loop:
+res=1    n=1(00...001)
+
+III Loop:
+res=2   n=2(00...000)
+
+---------------------------------------------
+
+MSB: Most Significancee Bit
+
+i) Initialize: res = 0
+ii) Traverse from the last bit MSB and inc res for set bits
+iii) Return res
+
+if(n%2 != 0)       OR            if(n&1 != 0)              // to know last bit is set or not
+    res++  
+
+n = n/2                   // to get all the bits by eliminating last bit
+
+//////////////////////////////////////////////////////////
+
+191. Number of 1 Bits
+
+Given a positive integer n, write a function that returns the number of set bits in its binary representation (also known as the Hamming weight).
+
+ 
+
+Example 1:
+Input: n = 11
+Output: 3
+Explanation:
+	     The input binary string 1011 has a total of three set bits.
+
+Example 2:
+Input: n = 128
+Output: 1
+Explanation:
+             The input binary string 10000000 has a total of one set bit.
+
+Example 3:
+Input: n = 2147483645
+Output: 30
+Explanation:
+            The input binary string 1111111111111111111111111111101 has a total of thirty set bits.
+
+ 
+
+Constraints:
+
+1 <= n <= 231 - 1

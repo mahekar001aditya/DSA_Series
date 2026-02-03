@@ -1,0 +1,66 @@
+
+class Solution {
+    public int hammingWeight(int n) {
+        int res = 0;
+        while(n>0){
+            n = n&(n-1);
+                res++;
+        }
+        return res;
+    }
+}
+
+//////////////////////////////////////////////////////////
+
+n=40(101000)
+
+I Loop:
+n=32(100000)
+
+II Loop:
+n=0(000000)
+
+-------------------------------------
+
+n     = 40  : 101000
+(n−1) = 39  : 100111
+-------------------
+n&(n−1)=32  : 100000
+
+
+n     = 32  : 100000
+(n−1) = 31  : 011111
+-------------------
+n&(n−1)=0   : 000000
+
+//////////////////////////////////////////////////////////
+
+191. Number of 1 Bits
+
+Given a positive integer n, write a function that returns the number of set bits in its binary representation (also known as the Hamming weight).
+
+ 
+
+Example 1:
+Input: n = 11
+Output: 3
+Explanation:
+	     The input binary string 1011 has a total of three set bits.
+
+Example 2:
+Input: n = 128
+Output: 1
+Explanation:
+             The input binary string 10000000 has a total of one set bit.
+
+Example 3:
+Input: n = 2147483645
+Output: 30
+Explanation:
+            The input binary string 1111111111111111111111111111101 has a total of thirty set bits.
+
+ 
+
+Constraints:
+
+1 <= n <= 231 - 1

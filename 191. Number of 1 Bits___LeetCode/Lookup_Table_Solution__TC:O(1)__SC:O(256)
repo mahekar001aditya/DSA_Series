@@ -1,0 +1,53 @@
+
+class Solution {
+
+    int tbl[] = new int[256];              // lookup table for 8-bit numbers
+
+    void init(){                           // initialize table
+        tbl[0] = 0;                        // base case
+        for(int i=1;i<256;i++){
+            tbl[i] = tbl[i&(i-1)] + 1;     // count set bits
+        }
+    }
+
+    public int hammingWeight(int n) {
+        init();                            // build table
+        return tbl[n & 255] +              // last 8 bits
+               tbl[(n >> 8) & 255] +       // next 8 bits
+               tbl[(n >> 16) & 255] +      // next 8 bits
+               tbl[(n >> 24) & 255];       // highest 8 bits
+    }
+}
+
+
+//////////////////////////////////////////////////////////
+
+191. Number of 1 Bits
+
+Given a positive integer n, write a function that returns the number of set bits in its binary representation (also known as the Hamming weight).
+
+ 
+
+Example 1:
+Input: n = 11
+Output: 3
+Explanation:
+	     The input binary string 1011 has a total of three set bits.
+
+Example 2:
+Input: n = 128
+Output: 1
+Explanation:
+             The input binary string 10000000 has a total of one set bit.
+
+Example 3:
+Input: n = 2147483645
+Output: 30
+Explanation:
+            The input binary string 1111111111111111111111111111101 has a total of thirty set bits.
+
+ 
+
+Constraints:
+
+1 <= n <= 231 - 1

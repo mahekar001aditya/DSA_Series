@@ -1,0 +1,43 @@
+
+class Solution {
+    ArrayList<Integer> twoOddNum(int[] arr) {
+        int n = arr.length;
+        ArrayList<Integer> list = new ArrayList<>();   // store odd occurring numbers
+
+        for(int i = 0; i < n; i++){
+            int count = 0;                             // reset count for each element
+            for(int j = 0; j < n; j++){
+                if(arr[i] == arr[j]) count++;          // count occurrences
+            }
+            if(count % 2 != 0 && !list.contains(arr[i])){
+                list.add(arr[i]);                      // add only once
+            }
+        }
+
+        Collections.sort(list, Collections.reverseOrder()); // GFG requires descending order
+        return list;
+    }
+}
+
+/////////////////////////////////////////////////////
+
+Traverse through the array count occurrances of every number. If count is odd print the number
+
+/////////////////////////////////////////////////////
+
+Two odd Occuring
+Given an unsorted array, arr[] of positive numbers that contains even number of occurrences for all numbers except two numbers. Return that two numbers in decreasing order which has odd occurrences.
+
+Examples:
+
+Input: arr = [4, 2, 4, 5, 2, 3, 3, 1]
+Output: [5, 1] 
+Explanation: 5 and 1 have odd occurrences.
+
+Input: arr[] = [1, 7, 5, 7, 5, 4, 7, 4]
+Output: [7, 1]
+Explanation: 7 and 1 have odd occurrences.
+
+Constraints:
+2 ≤ arr.size() ≤ 106
+1 ≤ arr[i]≤ 107

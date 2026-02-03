@@ -1,13 +1,13 @@
 class Solution {
     public int hammingWeight(int n) {
-        int res = 0;                		                                                                                             	// count of set bits
-        while(n > 0){              			                                                                                      // loop till n becomes 0
-            if(n % 2 != 0){         OR        if(n % 2 == 1){           OR      if((n & 1) != 0){  	                             // check last bit
-                res++;              		                      	                                                                   // increment count
+        int res = 0;                		                                                                                                                 	// count of set bits
+        while(n > 0){              			                                                                                                           // loop till n becomes 0
+            if(n % 2 != 0){         OR        if(n % 2 == 1){           OR      if((n & 1) != 0){  	         OR           res += (n&1);                    // check last bit
+                res++;              		                      	                                                                                // increment count
             }
-            n = n / 2;              		                                                                                   	// right shift by 1
-        }
-          return res;                		                                                        	                         // return result
+            n = n / 2;              		                                                                                   	                     // right shift by 1
+        }    
+          return res;                		                                                        	                                           // return result
     }  
 }
 

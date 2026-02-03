@@ -1,7 +1,7 @@
 class Solution {
     public static boolean isPowerofTwo(int n) {
         if(n == 0) return false;              // 0 is not a power of 2
-        return (n & (n - 1)) == 0;           // true if only one set bit exists
+        return (n & (n - 1)) == 0;           // true if only zero set bit exists
     }
 }
 

@@ -1,0 +1,45 @@
+class Solution {
+    static void printTillN(int N) {
+        
+        if(N == 0) return;
+        
+        printTillN(N-1);
+        System.out.print(N + " ");
+       
+    }
+}
+
+/////////////////////////////////////////////////////
+
+CALLS ↓                 PRINTS ↑
+
+printTillN(3)
+ └── printTillN(2)
+      └── printTillN(1)
+           └── printTillN(0)   ← stop
+
+           print 1
+      print 2
+ print 3
+
+
+///////////////////////////////////////////////////
+
+1 to n Without Loops:
+
+Given an positive integer n, print numbers from 1 to n without using loops.
+Implement the function printTillN() to print the numbers from 1 to n as space-separated integers.
+
+Examples:
+
+Input: n = 5
+Output: 1 2 3 4 5
+Explanation: We have to print numbers from 1 to 5.
+
+Input: n = 10
+Output: 1 2 3 4 5 6 7 8 9 10
+Explanation: We have to print numbers from 1 to 10.
+
+Constraints:
+1 ≤ n ≤ 1000
+

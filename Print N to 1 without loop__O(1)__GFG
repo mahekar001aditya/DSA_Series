@@ -12,16 +12,11 @@ class Solution {
 
 /////////////////////////////////////////////////////
 
-CALLS ↓                 PRINTS ↑
+printNos(3) → print 3
+ └── printNos(2) → print 2
+      └── printNos(1) → print 1
+           └── printNos(0) → return
 
-printTillN(3)
- └── printTillN(2)
-      └── printTillN(1)
-           └── printTillN(0)   ← stop
-
-           print 1
-      print 2
- print 3
 
 
 ///////////////////////////////////////////////////

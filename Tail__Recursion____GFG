@@ -1,0 +1,59 @@
+
+Tail Recursive function:   It is the function in which the last thing happen in the function is recursive
+                           Takes less time in modern compiler beacause it is tail recursive
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Ex:
+
+void printNos(int N){  
+    if(N==0)return;                        // Start:     // Tail Call Elimination
+    System.out.print(N+" ");
+    printNos(N-1);                        // n = n-1  (go to start)           // last recursive in function == tail recursion
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+// Non Tail Recursive
+
+void fun(int n){
+    if(n == 0)
+        return;
+    fun(n-1);
+  }
+
+|----------|
+|     ↓    |
+|----------|
+
+// Equivalent Tail Recursive
+
+void fun(int n, int k){                // Inititally Pass k=1
+    if(n == 0) 
+      return;
+    print(k);
+    fun(n-1,k+1);
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+// Non tail recursive
+
+int fact(int n){
+    if(n== 0 || n == 1)
+        return 1;
+    return n * fact(n-1);
+}
+
+
+|----------|
+|     ↓    |
+|----------|
+
+// Equivalent Tail Recursive
+
+int fact(int n,int k){               // Inititally Pass k=1
+    if(n == 0 || n == 1)
+        return 1;
+    return fact(n-1, k*n);
+}

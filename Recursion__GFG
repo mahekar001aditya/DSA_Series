@@ -1,0 +1,111 @@
+
+*Recursion:  A function call itself directly or indirectly
+_______________________________________________________________
+Structure:
+
+fun(..){
+      // base case
+      ....
+      // Recursive call(with at least 1 change in parameter)
+      ....
+  }
+________________________________________________________________
+________________________________________________________________
+`Direct Recursion: 
+-------------------------
+void fun1(){
+    ..........
+    fun1();
+    .........
+  }
+
+_______________________________________________________________
+
+`Indirect Recursion:
+-------------------------
+void fun1(){
+    ..........
+    fun2();
+    .........
+  }
+
+void fun2(){
+    ..........
+    fun1();
+    .........
+  }
+
+
+
+
+______________________________________
+
+Class Test{
+  static void fun1(){
+        print("fun1");
+  }
+  statoc void fun2(){
+        print("Before fun1");
+        fun1();
+        print("After fun1");
+  }
+  public static void main(String []a){
+        print("Before fun2");
+        fun2();
+        print("After fun2");
+  }
+}
+
+//////////////////////////////////////////////////
+
+Output:
+_____________
+Before fun2
+Before fun1
+fun1
+After fun1
+After fun2
+
+
+Execution flow:
+_______________________
+main()
+|--> Before fun2
+|       
+|--> fun2()
+|       |--> Before fun1
+|       |--> fun1()
+|       |      |--> fun1
+|       | 
+|       |--> After fun1
+|        
+|--> After fun2
+
+//////////////////////////////////////////////////
+
+class Test{
+    if(n == 0){                              // Base Case
+        return;
+    }
+
+    print("GFG");
+    fun1(n-1);
+}
+
+public static void main(){
+      fun1(2);
+    }
+}
+
+_____________________________________________
+
+main()
+|--> fun1(2)
+      |--> GFG
+      |
+      |--> fun1(1)
+            |--> GFG
+            |
+            |--> fun1(0)
+            
+//////////////////////////////////////////////////

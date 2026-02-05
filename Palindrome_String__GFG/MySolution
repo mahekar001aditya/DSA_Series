@@ -1,0 +1,40 @@
+
+class Solution {
+    boolean isValid(char i, char n){
+        if(i != n){                   // check if two chars are not equal
+            return false;             // return false if mismatch
+        }
+        return true;                  // return true if chars match
+    }
+
+    boolean isPalindrome(String s) {
+        int i = 0;                    
+        int n = s.length()-1;         // set start (i) and end (n) indices
+        
+        if(s.charAt(i) != s.charAt(n)) { return false; }  // only checks first and last chars
+        
+        return isValid(s.charAt(i+1), s.charAt(n-1));    // checks only the second pair
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Palindrome String
+You are given a string s. Your task is to determine if the string is a palindrome. A string is considered a palindrome if it reads the same forwards and backwards.
+
+Examples :
+
+Input: s = "abba"
+Output: true
+Explanation: "abba" reads the same forwards and backwards, so it is a palindrome.
+
+Input: s = "abc" 
+Output: false
+Explanation: "abc" does not read the same forwards and backwards, so it is not a palindrome.
+
+Constraints:
+1 ≤ s.size() ≤ 106
+
+The string s contains only lowercase english letters (a-z).
+

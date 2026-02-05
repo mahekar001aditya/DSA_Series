@@ -1,0 +1,48 @@
+
+boolean isPalindrome(String str, int start, int end){
+    if(start >= end){ 
+      return true; 
+    }                                      // base case: single char or crossed indices
+
+    return (str.charAt(start) == str.charAt(end))                       // compare first and last characters
+            && isPalindrome(str, start+1, end-1);                       // recurse for inner substring
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+isPalindrome("MADAM", 0, 4)
+│
+├─ compare M == M ✓
+│
+├─ isPalindrome("MADAM", 1, 3)
+│   │
+│   ├─ compare A == A ✓
+│   │
+│   ├─ isPalindrome("MADAM", 2, 2)
+│   │   │
+│   │   └─ start >= end → true   (base case)
+│   │
+│   └─ return true   ← backtrack
+│
+└─ return true       ← backtrack
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Palindrome String
+You are given a string s. Your task is to determine if the string is a palindrome. A string is considered a palindrome if it reads the same forwards and backwards.
+
+Examples :
+
+Input: s = "abba"
+Output: true
+Explanation: "abba" reads the same forwards and backwards, so it is a palindrome.
+
+Input: s = "abc" 
+Output: false
+Explanation: "abc" does not read the same forwards and backwards, so it is not a palindrome.
+
+Constraints:
+1 ≤ s.size() ≤ 106
+
+The string s contains only lowercase english letters (a-z).

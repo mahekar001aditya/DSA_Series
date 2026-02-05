@@ -1,0 +1,45 @@
+
+class Solution {
+    public static int sumOfDigits(int n) {
+        int sum = 0;              // stores sum of digits
+        while(n > 0){             
+            sum += n % 10;        // add last digit to sum
+            n /= 10;              // remove last digit from number
+        }
+        return sum;               // return final digit sum
+    }
+}
+
+//////////////////////////////////////////////////////////
+
+n = 1234, sum = 0
+│
+├─ sum += 4 → sum = 4     n = 123
+│
+├─ sum += 3 → sum = 7     n = 12
+│
+├─ sum += 2 → sum = 9     n = 1
+│
+├─ sum += 1 → sum = 10    n = 0
+│
+└─ loop ends → return 10
+
+
+//////////////////////////////////////////////////////////
+
+Sum of Digits:
+You are given a number n. You need to find the sum of digits of n.
+
+Examples :
+
+Input: n = 1
+Output: 1
+Explanation: Sum of digit of 1 is 1.
+
+Input: n = 99999
+Output: 45
+Explanation: Sum of digit of 99999 is 45.
+
+Constraints:
+1 ≤ n ≤ 107
+

@@ -1,0 +1,48 @@
+
+class Solution {
+    static int sumOfDigits(int n) {
+        if(n == 0){
+            return 0;                  // base case: no digits left
+        }
+        return sumOfDigits(n/10)       // recursive call with remaining digits
+               + n % 10;               // add last digit
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+
+sumOfDigits(1234)
+│
+├─ sumOfDigits(123) + 4
+│   │
+│   ├─ sumOfDigits(12) + 3
+│   │   │
+│   │   ├─ sumOfDigits(1) + 2
+│   │   │   │
+│   │   │   ├─ sumOfDigits(0) + 1
+│   │   │   │
+│   │   │   └─ return 0
+│   │   │
+│   │   └─ return 1
+│   │
+│   └─ return 3
+│
+└─ return 10
+
+/////////////////////////////////////////////////////////////////
+
+Sum Of Digits
+Given a positive number n. Find the sum of all the digits of n.
+
+Examples:
+
+Input: n = 687
+Output: 21
+Explanation: Sum of 687's digits: 6 + 8 + 7 = 21
+
+Input: n = 12
+Output 3
+Explanation: Sum of 12's digits: 1 + 2 = 3
+
+Constraints:
+1 <= n <= 105

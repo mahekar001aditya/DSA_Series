@@ -1,7 +1,7 @@
 
 class Solution {
     static int sumOfDigits(int n) {
-        if(n == 0){
+        if(n == 0){                     // if(n <= 9)     bcz we divide by 10 and if smaller then equal to 9 it is the last digit
             return 0;                  // base case: no digits left
         }
         return sumOfDigits(n/10)       // recursive call with remaining digits

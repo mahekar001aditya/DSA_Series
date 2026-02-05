@@ -1,0 +1,37 @@
+class Solution {
+    public boolean isPalindrome(int n) {
+        if(n < 0) return false;        // negative numbers are not palindrome
+        int ori = n, rev = 0;          // store original, initialize reversed number
+        while(n > 0){                   
+            int ld = n % 10;           // get last digit
+            rev = 10 * rev + ld;       // append digit to reversed number
+            n /= 10;                   // remove last digit from n
+        }
+        return ori == rev;             // check if original equals reversed
+    }
+}
+
+
+///////////////////////////////////////////////
+
+Palindrome:
+
+You are given an integer n. Your task is to determine whether it is a palindrome.
+A number is considered a palindrome if it reads the same backward as forward, like the string examples "MADAM" or "MOM".
+
+Examples:
+
+Input: n = 555
+Output: true
+Explanation: The number 555 reads the same backward as forward, so it is a palindrome.
+
+Input: n = 123
+Output: false
+Explanation: The number 123 reads differently backward (321), so it is not a palindrome.
+
+Input: n = 1221
+Output: true
+
+Constraints:
+1 ≤ n ≤ 109
+

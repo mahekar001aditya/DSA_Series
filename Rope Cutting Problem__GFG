@@ -1,0 +1,81 @@
+
+int maxPieces(int n, int a, int b, int c){
+    if(n == 0){
+        return 0;                     // exact cut achieved
+    }
+
+    if(n < 0){
+        return -1;                    // invalid cut
+    }
+
+    int res = Math.max(
+                  Math.max(maxPieces(n-a, a, b, c),              // cut of length a
+                           maxPieces(n-b, a, b, c)),              // cut of length b
+                  maxPieces(n-c, a, b, c)                  // cut of length c
+              );
+
+    if(res == -1){
+        return -1;                    // no valid cuts possible
+    }
+
+    return res + 1;                   // count current cut
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+                         maxPieces(5)
+                    /         |          \
+          -2→ maxPieces(3)  -5→ maxPieces(0)  -1→ maxPieces(4)
+                /   |   \           |           /   |   \
+      maxPieces(1)  X   maxPieces(2)  0     maxPieces(2)  X  maxPieces(3)
+        /  |  \                      / | \
+       X   X  0                     0  X  maxPieces(1)
+                                           / | \
+                                          X  X  0
+
+_______________________________________________________________________________
+
+I/P: n =5 a=2, b=5, c=1
+maxPieces(0) → 0
+maxPieces(1) → 1
+maxPieces(2) → 2
+maxPieces(3) → 2
+maxPieces(4) → 4
+maxPieces(5) → 5
+
+Final Answer:
+
+O/P: 5
+
+Tree view (corrected & clear)
+maxPieces(5)
+│
+├─ (cut 2) → maxPieces(3)
+│   │
+│   ├─ (cut 2) → maxPieces(1)
+│   │   │
+│   │   └─ (cut 1) → maxPieces(0) → 0
+
+///////////////////////////////////////////////////////////////////////////////
+
+Rope Cutting Problem:
+
+Length of every piece(after cuts) should be in a set {a,b,c}
+0 < a,b,c <= n
+
+
+I/P: n =5, a =2,b=5,c=1
+O/P: 5
+Explaination: We make 5 pieces of length 1 each
+
+I/P: n =23, a =12,b=9,c=11
+O/P: 2
+Explaination: We make 2 pieces of length 11 and 12 each
+
+I/P: n =5, a =4,b=2,c=6
+O/P: -1
+Explaination: We make 0 pieces
+
+

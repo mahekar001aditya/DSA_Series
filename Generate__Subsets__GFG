@@ -1,0 +1,59 @@
+subsets("ABC", "", 0);
+
+
+void subsets(String s, String curr, int i){
+   
+    if(i == s.length()){                                                          // Base case: processed all characters
+        System.out.println(curr);                                                // print one subset
+        return;
+    }
+   
+    subsets(s, curr, i+1);                                                         // Choice 1: do NOT include current character
+    subsets(s, curr + s.charAt(i), i+1);                                           // Choice 2: include current character
+}
+
+
+///////////////////////////////////////////////////////////////////
+
+""
+  ├── ""
+  └── "C"
+
+"A"
+  ├── "A"
+  └── "AC"
+
+"B"
+  ├── "B"
+  └── "BC"
+
+"AB"
+  ├── "AB"
+  └── "ABC"
+
+We can generate all subsets for length n string using subsets for length n-1 string
+
+        curr:         ""
+                   /       \
+                ""           "A"
+              /    \        /     \
+           ""        "B"   "A"     "AB"
+          /  \      /  \   /  \     /   \
+        ""  "C"   "B" "BC" "A" "AC" "AB" "ABC"
+
+Output:
+
+"", "C", "B", "BC", "A", "AC", "AB", "ABC"
+
+
+///////////////////////////////////////////////////////////////////
+
+Note:
+` All charcters in the input string are distinct
+` For a string of length n, there are going to be 2^n subsets
+
+I/P: s = "AB"
+O/P: " ", "A", "B", "AB"
+
+I/P: s = "ABC"
+O/P: " ", "A", "B", "AB", "AC", "BC", "ABC"

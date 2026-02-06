@@ -33,13 +33,13 @@ void subsets(String s, String curr, int i){
 
 We can generate all subsets for length n string using subsets for length n-1 string
 
-        curr:         ""
+        curr:         ""                                   i = 0
                    /       \
-                ""           "A"
+                ""           "A"                           i = 1
               /    \        /     \
-           ""        "B"   "A"     "AB"
+           ""        "B"   "A"     "AB"                    i = 2
           /  \      /  \   /  \     /   \
-        ""  "C"   "B" "BC" "A" "AC" "AB" "ABC"
+        ""  "C"   "B" "BC" "A" "AC" "AB" "ABC"             i = 3
 
 Output:
 

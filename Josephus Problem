@@ -6,6 +6,7 @@ class Solution {
         // Base case:
         // If only one person is left, that person is the winner.
         // Using 1-based indexing, so return 1.
+
         if(n == 1){
             return 1;
         }
@@ -15,6 +16,7 @@ class Solution {
         // 2. Shift the position by (k-1) because every k-th person is eliminated
         // 3. Use modulo n to keep position within range
         // 4. Add 1 to convert back to 1-based indexing
+
         return (josephus(n-1, k) + k - 1) % n + 1;
     }
 }

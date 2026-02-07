@@ -1,0 +1,68 @@
+
+int insert(int arr[], int n, int x, int cap, int pos){   // function to insert x at position pos
+   if(n == cap){                                        // check if array is already full
+      return n;                                         // no insertion possible, return size
+    }
+
+    int idx = pos-1;                                    // convert 1-based position to 0-based index
+
+    for(int i = n-1; i >= idx; i--){                    // shift elements right to make space
+        arr[i+1] = arr[i];                              // move element one position ahead
+    }
+
+    arr[idx] = x;                                       // insert new element at target index
+
+    return n+1;                                         // return updated size of array
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+Inserting Elements in an Array - Array Operations:
+
+In this post, we will look into insertion operation in an Array, i.e., how to insert into an Array, such as:
+
+Insert Element at the Beginning of an Array
+Insert Element at a given position in an Array
+Insert Element at the End of an Array
+Insert Element at the Beginning of an Array
+Inserting an element at the beginning of an array involves shifting all existing elements one position to the right to create an empty space for the new element at index 0.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40], ele = 50
+Output: [50, 10, 20, 30, 40]
+
+Input: arr[] = [], ele = 20
+Output: [20]
+
+To know more about the implementation, please refer Insert Element at the Beginning of an Array.
+
+Insert Element at a given position in an Array
+Inserting an element at a given position in an array involves shifting the elements from the specified position onward one index to the right to make an empty space for the new element. This operation ensures that the order of the existing elements is preserved while placing the new element at the desired index. After shifting the elements, the new element is inserted at the target position.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40], pos = 2, ele = 50
+Output: [10, 50, 20, 30, 40]
+
+Input: arr[] = [], pos = 1, ele = 20
+Output: [20]
+
+Input: arr[] = [10, 20, 30, 40], pos = 5, ele = 50
+Output: [10, 20, 30, 40, 50]
+
+
+To know more about the implementation, please refer Insert Element at a Given Position in an Array.
+
+Insert Element at the End of an Array
+Inserting an element at the end of an array involves adding the new element to the last available index of the array. Inserting an element at the end of the array takes constant time provided there is enough space in the array to add the new element.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40], ele = 50
+Output: [10, 20, 30, 40, 50]
+
+Input: arr[] = [], ele = 20
+Output: [20]
+

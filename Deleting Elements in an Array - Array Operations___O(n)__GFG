@@ -1,0 +1,103 @@
+
+int delete(int arr[], int n, int x){            // function to delete element x from array
+    int i;                                      // variable to store index of element
+
+    for(i = 0; i < n; i++){                     // traverse array to find element x
+        if(arr[i] == x){                        // if element found
+            break;                              // stop searching
+        }
+    }
+
+    if(i == n){                                 // if element not found in array
+        return n;                               // return original size
+    }
+
+    for(int j = i; j < n - 1; j++){             // shift elements left after deletion
+        arr[j] = arr[j + 1];                    // move next element to current index
+    }
+
+    return (n - 1);                             // return updated size after deletion
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+Deleting Elements in an Array - Array Operations
+In this post, we will look into deletion operation in an Array, i.e., how to delete an element from an Array, such as:
+
+Delete an Element from the Beginning of an Array
+Delete an Element from a Given Position in an Array
+Delete First Occurrence of Given Element from an Array
+Remove All Occurrences of an Element in an Array
+Delete an Element from the End of an array
+Delete an Element from the Beginning of an Array
+Given an array of integers, the task is to delete an element from the beginning of the array.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40]
+Output: [20, 30, 40]
+
+Input: arr[] = [20]
+Output: []
+
+To delete an element from the beginning of an array, we need to shift all subsequent elements one position to the left to fill the gap created by the removal. After shifting all the elements, reduce the array size by 1 to remove the extra element at the end. To know more about the implementation, please refer Delete an Element from the Beginning of an Array.
+
+Delete an Element from a Given Position in an Array
+Given an array of integers, the task is to delete an element from a given position in the array.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40], pos = 1
+Output: [20, 30, 40]
+
+Input: arr[] = [10, 20, 30, 40], pos = 2
+Output: [10, 30, 40]
+
+Input: arr[] = [10, 20, 30, 40], pos = 4
+Output: [10, 20, 30]
+
+To delete an element from a given position in an array, all elements occurring after the given position need to be shifted one position to the left. After shifting all the elements, reduce the array size by 1 to remove the extra element at the end. To know more about the implementation, please refer Delete an Element from a Given Position in an Array.
+
+Delete First Occurrence of Given Element from an Array
+Given an array of integers, the task is to delete a given element from the array. If there are multiple occurrences of the element, we need to remove only its first occurrence.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40], ele = 20
+Output: [10, 30, 40]
+
+Input: arr[] = [10, 20, 30, 40], ele = 25
+Output: [10, 20, 30, 40]
+
+Input: arr[] = [10, 20, 20, 20 30], ele = 20
+Output: [10, 20, 20, 30]
+
+To delete the first occurrence of a given element from an array, first iterate through the array to find the first occurrence of the element and as soon as we find it, we need to shift all subsequent elements one position to the left. After shifting the elements, the reduce the array size by one to remove the extra element at the end. To know more about the implementation, please refer Delete First Occurrence of Given Element from an Array.
+
+Remove All Occurrences of an Element in an Array
+Given an array of integers and an integer ele, the task is to remove all occurrences of ele in-place and return the count of elements not equal to ele. The modified array should first have those elements which are not equal to ele, and the remaining elements can be ignored.
+
+Examples:
+
+Input: arr[] = [3, 2, 2, 3], ele = 3
+Output: 2
+Explanation: The answer is 2 because there are 2 elements which are not equal to 3 and modified arr[] = [2, 2, _, _]
+
+Input: arr[] = [0, 1, 3, 0, 2, 2, 4, 2], ele = 2
+Output: 5
+Explanation: The answer is 5 because there are 5 elements which are not equal to 2 and modified arr[] = [0, 1, 3, 0, 4, _, _, _].
+
+The approach is to iterate through the array while maintaining a subarray at the beginning containing only elements that are not equal to ele. We can use a counter, k, to track the end of this subarray. Each time we encounter an element not equal to ele, we place it at the k-th index and then increment k. To know more about the implementation, please refer Remove All Occurrences of an Element in an Array.
+
+Delete an Element from the End of an Array
+Given an array of integers, the task is to delete an element from the end of the array.
+
+Examples:
+
+Input: arr[] = [10, 20, 30, 40]
+Output: [10, 20, 30]
+
+Input: arr[] = [20]
+Output: []
+

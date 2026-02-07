@@ -1,0 +1,105 @@
+
+
+swap(int a,int n=b){                        // swap function (syntax invalid in Java/C++), swaps two integers
+    int temp = a;                             // store a in temp
+    a = b;                                    // assign b to a
+    b = c;                                    // assign c to b (c is undefined here)
+}
+
+void permute(String s,int i = 0){            // permutation function with default index 0 (Java doesn’t support default params)
+    if(i == s.length()-1){                    // base case: last index reached
+        print(s + " ");                       // print current permutation
+        return;                               // return to previous call
+    }
+
+    for(int j=i; j<s.length(); j++){          // loop from current index i to end of string
+        swap(s.charAt(i),s.charAt(j));       // swap characters at i and j (won’t work in Java because String is immutable)
+        permute(s,i+1);                       // recursively call permute for next index
+        swap(s.charAt(i),s.charAt(j));       // backtrack: swap back (again, won’t affect the original string)
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+perm("ABC", 0)                 // i = 0
+|
+|-- swap(0,0)                  // fix 'A' at position 0
+|   perm("ABC", 1)             // i = 1
+|   |
+|   |-- swap(1,1)              // fix 'B' at position 1
+|   |   perm("ABC", 2)         // i = 2 → base case
+|   |   print("ABC")           // leaf node
+|   |   swap(1,1) backtrack    // restore string (no change here)
+|   |
+|   |-- swap(1,2)              // swap B and C
+|   |   perm("ACB", 2)         // i = 2 → base case
+|   |   print("ACB")           // leaf node
+|   |   swap(1,2) backtrack    // restore to "ABC"
+|   |
+|   swap(0,0) backtrack        // restore to original "ABC"
+|
+|-- swap(0,1)                  // swap A and B
+|   perm("BAC", 1)             // i = 1
+|   |
+|   |-- swap(1,1)              // fix A at position 1
+|   |   perm("BAC", 2)
+|   |   print("BAC")
+|   |   swap(1,1) backtrack
+|   |
+|   |-- swap(1,2)              // swap A and C
+|   |   perm("BCA", 2)
+|   |   print("BCA")
+|   |   swap(1,2) backtrack
+|   |
+|   swap(0,1) backtrack        // restore to "ABC"
+|
+|-- swap(0,2)                  // swap A and C
+|   perm("CBA", 1)
+|   |
+|   |-- swap(1,1)              // fix B at position 1
+|   |   perm("CBA", 2)
+|   |   print("CBA")
+|   |   swap(1,1) backtrack
+|   |
+|   |-- swap(1,2)              // swap B and A
+|   |   perm("CAB", 2)
+|   |   print("CAB")
+|   |   swap(1,2) backtrack
+|   |
+|   swap(0,2) backtrack        // restore to "ABC"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                  ""
+             /             |             |             \
+           A               B             C             D
+      /     |     \    /     |     \   /     |     \   /     |     \
+     AB     AC    AD  BA    BC    BD  CA    CB    CD  DA    DB    DC
+   / | \  / | \  / | \ / | \  / | \ / | \ / | \  / | \ / | \  / | \ / | \
+ ABC ABD ACB ACD ADB ADC BAC BADC BCA BCD BAD BDC CAB CAD CBA CBD CDA CDB DAB DAC DBA DBC DCA DCB
+  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | 
+ABCD ABDC ACBD ACDB ADBC ADCB BACD BADC BCAD BCDA BDAC BDCA CABD CADB CBAD CBDA CDAB CDBA DABC DACB DBAC DBCA DCAB DCBA
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Permutations of a String
+Given a string s, which may contain duplicate characters, your task is to generate and return an array of all unique permutations of the string. You can return your answer in any order.
+
+Examples:
+
+Input: s = "ABC"
+Output: ["ABC", "ACB", "BAC", "BCA", "CAB", "CBA"]
+Explanation: Given string ABC has 6 unique permutations.
+
+Input: s = "ABSG"
+Output: ["ABGS", "ABSG", "AGBS", "AGSB", "ASBG", "ASGB", "BAGS", "BASG", "BGAS", "BGSA", "BSAG", "BSGA", "GABS", "GASB", "GBAS", "GBSA", "GSAB", "GSBA", "SABG", "SAGB", "SBAG", "SBGA", "SGAB", "SGBA"]
+Explanation: Given string ABSG has 24 unique permutations.
+
+Input: s = "AAA"
+Output: ["AAA"]
+Explanation: No other unique permutations can be formed as all the characters are same.
+
+Constraints:
+1 <= s.size() <= 9
+s contains only Uppercase english alphabets

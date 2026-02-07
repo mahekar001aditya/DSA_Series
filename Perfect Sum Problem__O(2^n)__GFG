@@ -1,0 +1,90 @@
+class Solution {
+
+                                                                      // Recursive function to count subsets of first 'n' elements of nums[] 
+                                                                      // whose sum equals 'target'
+    int countSubset(int nums[], int n, int target) {
+
+                                                                                      // Base case:
+                                                                                      // If no elements left (n == 0)
+                                                                                      // Return 1 if target == 0 (empty subset sums to 0), else 0
+        if(n == 0){
+            return (target == 0) ? 1 : 0;
+        }
+
+                                                                                // Recursive case:
+                                                                                // 1. Exclude current element (nums[n-1]) → target stays same
+                                                                                // 2. Include current element → subtract nums[n-1] from target
+        return countSubset(nums, n-1, target) + 
+               countSubset(nums, n-1, target - nums[n-1]);
+    }
+
+                                                                                  // Function to count subsets of the full array nums[] whose sum equals 'target'
+    public int perfectSum(int[] nums, int target) {
+            int n = nums.length;                                                 // Number of elements in array
+        return countSubset(nums, n, target);                                     // Start recursion with all elements
+    }
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+                    
+Level 0 (n=3)                     ""
+                                 /  \
+                                /    \
+
+Level 1 (15)
+                         ""                 "15"
+                        /  \               /    \
+                       /    \             /      \
+
+Level 2 (20)
+                  ""       "20"      "15"       "15,20"
+                 /  \      /  \      /  \       /     \
+                /    \    /    \    /    \     /       \
+
+Level 3 (10)
+             ""    "10"  "20"  "20,10" "15"  "15,10" "15,20" "15,20,10"
+             |      |     |       |     |      |       |        |
+            {}     {10}  {20}   {20,10} {15}  {15,10} {15,20}  {15,20,10}
+                                               ✔️ 
+  
+////////////////////////////////////////////////////////////////////////////////
+
+416. Partition Equal Subset Sum
+
+Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.
+
+ 
+
+Example 1:
+Input: nums = [1,5,11,5]
+Output: true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+
+Example 2:
+Input: nums = [1,2,3,5]
+Output: false
+Explanation: The array cannot be partitioned into equal sum subsets.
+ 
+
+Constraints:
+
+1 <= nums.length <= 200
+1 <= nums[i] <= 100
+
+
+I/P: {10,5,2,3,6} sum=8
+O/P: 2
+
+I/P: {10,20,15} sum=0
+O/P: 1
+
+I/P: {1,2,3} sum=4
+O/P: 1
+
+I/P: {10,20,15} sum=37
+O/P: 0
+

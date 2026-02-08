@@ -1,0 +1,59 @@
+class Solution {
+      
+    // Finds index of the largest element
+    int largest(int arr[], int n){
+        int max = 0;                    // local variable (safe for multiple TCs)
+        for(int i=1;i<n;i++){
+            if(arr[i] > arr[max])
+                max = i;
+        }
+        return max;                     // returns index of largest
+    }
+    
+    public int getSecondLargest(int[] arr) {
+        int n = arr.length;
+        if(n < 2) return -1;            // edge case: not enough elements
+        
+        int max = largest(arr,n);       // index of largest
+        int smax = -1;                  // index of second largest
+        
+        for(int i=0;i<n;i++){
+            // KEY FIX: ensures second largest is strictly smaller than largest
+            if(arr[i] < arr[max]){
+                if(smax == -1)          // first valid candidate
+                    smax = i;
+                else if(arr[i] > arr[smax])
+                    smax = i;           // better second largest found
+            }
+        }
+        
+        if(smax == -1) return -1;       // all elements equal
+        return arr[smax];               // return value, not index
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Second Largest:
+Given an array of positive integers arr[], return the second largest element from the array. If the second largest element doesn't exist then return -1.
+
+Note: The second largest element should not be equal to the largest element.
+
+Examples:
+
+Input: arr[] = [12, 35, 1, 10, 34, 1]
+Output: 34
+Explanation: The largest element of the array is 35 and the second largest element is 34.
+
+Input: arr[] = [10, 5, 10]
+Output: 5
+Explanation: The largest element of the array is 10 and the second largest element is 5.
+
+Input: arr[] = [10, 10, 10]
+Output: -1
+Explanation: The largest element of the array is 10 and the second largest element does not exist.
+
+Constraints:
+2 ≤ arr.size() ≤ 105
+1 ≤ arr[i] ≤ 105

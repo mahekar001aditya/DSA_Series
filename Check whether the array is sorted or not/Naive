@@ -1,4 +1,5 @@
 
+
 class Solution {
 			public boolean arraySortedOrNot(int[] arr) {
 						int n = arr.length - 1;                  // Last index of the array

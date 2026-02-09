@@ -1,38 +1,35 @@
 
 class Solution {
     ArrayList<Integer> removeDuplicates(int[] arr) {
-        ArrayList<Integer> list = new ArrayList<>();   // Create ArrayList to store unique elements
-        
-        int n = arr.length;                             // Length of the input array
-        int res = 1;                                    // Index for next unique element
-        
-        for(int i = 1; i < n; i++) {                   // Traverse the array from second element
-            if(arr[res - 1] != arr[i]) {               // If current element is different from last unique
-                arr[res] = arr[i];                     // Place it at the res-th position
-                res++;                                  // Increment res to point to next position
+        ArrayList<Integer> list = new ArrayList<>();  // List to store unique elements
+        int n = arr.length;                           // Length of input array
+
+        if(n == 0){ return list; }                    // Empty array → return empty list
+
+        list.add(arr[0]);                             // Add first element to list
+
+        for(int i = 1; i < n; i++){                  
+            if(arr[i-1] != arr[i]){                  // Compare current with previous
+                list.add(arr[i]);                    // Add only if different
             }
         }
-        
-        for(int i = 0; i < res; i++) {                 // Loop through only the unique elements
-            list.add(arr[i]);                           // Add unique elements to the ArrayList
-        }
-        
-        return list;                                   // Return the list containing unique elements
+
+        return list;                                  // Return list containing unique elements
     }
 }
 
 ////////////////////////////////////////////////////////////////
 
 arr[] = {10, 20, 20, 30, 30, 30}
-temp[] = {10, _, _, _, _}
 
-i=1: arr[1]=20 ≠ arr[0] → temp={10, 20, _, _, _}
-i=2: arr[2]=20 == arr[1] → temp={10, 20, _, _, _}
-i=3: arr[3]=30 ≠ arr[2] → temp={10, 20, 30, _, _}
-i=4: arr[4]=30 == arr[3] → temp={10, 20, 30, _, _}
-i=5: arr[5]=30 == arr[4] → temp={10, 20, 30, _, _}
+i=1: arr[1]=20 != arr[0]=10 → list={10, 20}
+i=2: arr[2]=20 == arr[1]=20 → skip, list={10, 20}
+i=3: arr[3]=30 != arr[2]=20 → list={10, 20, 30}
+i=4: arr[4]=30 == arr[3]=30 → skip, list={10, 20, 30}
+i=5: arr[5]=30 == arr[4]=30 → skip, list={10, 20, 30}
 
-# Final temp[] = {10, 20, 30}
+
+✅ Final list: {10, 20, 30}
 
 ////////////////////////////////////////////////////////////////
 

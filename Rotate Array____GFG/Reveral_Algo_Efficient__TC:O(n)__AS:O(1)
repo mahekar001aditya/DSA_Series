@@ -1,0 +1,82 @@
+
+class Solution {
+
+    static void reverse(int arr[], int low, int high){
+        // reverse elements between low and high indices
+        while(low < high){
+            int temp = arr[low];     // swap arr[low] and arr[high]
+            arr[low] = arr[high];
+            arr[high] = temp;
+            low++;
+            high--;
+        }
+    }
+
+    static void rotateArr(int arr[], int d) {
+        int n = arr.length;          // length of array
+        d = d % n;                   // handle case when d > n
+
+        reverse(arr, 0, d-1);        // reverse first d elements
+        reverse(arr, d, n-1);        // reverse remaining elements
+        reverse(arr, 0, n-1);        // reverse entire array
+    }
+}
+
+////////////////////////////////////////////////////////
+
+🔹 Step 1: Reverse first `d` elements
+
+reverse(arr, 0, d-1)
+
+Before:
+[1, 2, 3, 4, 5]
+
+After:
+[2, 1, 3, 4, 5]
+
+-------------------------------------------------------
+🔹 Step 2: Reverse remaining elements
+
+reverse(arr, d, n-1)
+
+Before:
+[2, 1, 3, 4, 5]
+
+After:
+[2, 1, 5, 4, 3]
+
+--------------------------------------------------------
+🔹 Step 3: Reverse the entire array
+
+reverse(arr, 0, n-1)
+
+Before:
+[2, 1, 5, 4, 3]
+
+After:
+[3, 4, 5, 1, 2]
+
+////////////////////////////////////////////////////////////
+
+Rotate Array:
+Given an array arr[]. Rotate the array to the left (counter-clockwise direction) by d steps, where d is a positive integer. Do the mentioned change in the array in place.
+
+Note: Consider the array as circular.
+
+Examples :
+
+Input: arr[] = [1, 2, 3, 4, 5], d = 2
+Output: [3, 4, 5, 1, 2]
+Explanation: when rotated by 2 elements, it becomes 3 4 5 1 2.
+
+Input: arr[] = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20], d = 3
+Output: [8, 10, 12, 14, 16, 18, 20, 2, 4, 6]
+Explanation: when rotated by 3 elements, it becomes 8 10 12 14 16 18 20 2 4 6.
+
+Input: arr[] = [7, 3, 9, 1], d = 9
+Output: [3, 9, 1, 7]
+Explanation: when we rotate 9 times, we'll get 3 9 1 7 as resultant array.
+
+Constraints:
+1 <= arr.size(), d <= 105
+0 <= arr[i] <= 105

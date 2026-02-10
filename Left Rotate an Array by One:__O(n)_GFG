@@ -1,0 +1,48 @@
+
+void LRotateOne(int arr[], int n){
+    int temp = arr[0];        // store first element
+
+    for(int i=1;i<n;i++){
+        arr[i-1] = arr[i];   // shift elements one step left
+    }
+
+    arr[n-1] = temp;         // put first element at the end
+}
+
+
+//////////////////////////////////////////////////////////////
+
+Left Rotate an Array by One:
+
+Given an array of size N, rotate the array left by one position.
+
+🔹 Input
+An integer N — size of the array
+N space-separated integers
+
+🔹 Output
+The array after left rotation by one
+
+🔹 Constraints
+1 ≤ N ≤ 10⁵
+
+−10⁹ ≤ Arr[i] ≤ 10⁹
+
+✅ Test Cases:
+
+🧪 Test Case 1
+
+Input
+5
+1 2 3 4 5
+Output
+2 3 4 5 1
+
+🧪 Test Case 2
+
+Input
+
+4
+10 20 30 40
+Output
+20 30 40 10

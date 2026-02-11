@@ -1,0 +1,104 @@
+
+			void printFreq(int arr[], int n){
+
+						int freq = 1, i = 1;		                                                	// freq stores count, i starts from 1
+
+						while(i < n){		                                                  	// traverse array
+
+									while(i < n && arr[i] == arr[i-1]){			                      // count duplicates
+												freq++;			                                          // increase frequency
+												i++;		                                                	// move forward
+									}
+
+									System.out.println(arr[i-1] + " : " + freq);		                    	// print element & freq
+
+									freq = 1;			                                                    // reset frequency for next element
+									i++;			                                                      // move to next new element
+						}
+
+						if(n == 1 || arr[n-1] != arr[n-2]){			                              // handle last element case
+									System.out.println(arr[n-1] + " : " + 1);
+						}
+			}
+```
+
+
+
+///////////////////////////////////////////////////////
+
+
+arr[] = {10,10,10,30,30,40}
+n = 6
+
+--------------------------------
+Initial:
+freq = 1
+i = 1
+--------------------------------
+
+i = 1
+arr[1] == arr[0] → 10 == 10 ✔
+freq = 2
+i = 2
+
+arr[2] == arr[1] → 10 == 10 ✔
+freq = 3
+i = 3
+
+arr[3] == arr[2] → 30 == 10 ✘
+Print → 10 : 3
+
+freq = 1
+i = 4
+--------------------------------
+
+i = 4
+arr[4] == arr[3] → 30 == 30 ✔
+freq = 2
+i = 5
+
+arr[5] == arr[4] → 40 == 30 ✘
+Print → 30 : 2
+
+freq = 1
+i = 6
+--------------------------------
+
+Exit loop (i = 6)
+
+Final check:
+arr[5] != arr[4] → 40 != 30 ✔
+Print → 40 : 1
+--------------------------------
+
+Final Output:
+10 : 3
+30 : 2
+40 : 1
+
+
+//////////////////////////////////////////////////////
+
+Find the frequency of each element in a sorted array
+Given a sorted array, arr[] consisting of N integers, the task is to find the frequencies of each array element.
+
+Examples: 
+
+
+Input: arr[] = {1, 1, 1, 2, 3, 3, 5, 5, 8, 8, 8, 9, 9, 10} 
+Output: Frequency of 1 is: 3
+              Frequency of 2 is: 1
+              Frequency of 3 is: 2
+              Frequency of 5 is: 2
+              Frequency of 8 is: 3
+              Frequency of 9 is: 2
+              Frequency of 10 is: 1
+
+
+Input: arr[] = {2, 2, 6, 6, 7, 7, 7, 11} 
+Output:  Frequency of 2 is: 2
+               Frequency of 6 is: 2
+               Frequency of 7 is: 3
+               Frequency of 11 is: 1
+
+

@@ -1,0 +1,89 @@
+
+int maxDiff(int arr[], int n){
+
+    int res = arr[1] - arr[0];   // initialize with first valid pair
+
+    // pick first element
+    for(int i = 0; i < n; i++){
+        
+        // pick second element after i
+        for(int j = i + 1; j < n; j++){
+            
+            // update maximum difference
+            res = Math.max(res, arr[j] - arr[i]);
+        }
+    }
+    
+    return res;   // return maximum difference
+}
+
+
+////////////////////////////////////////////////////////////////////////
+
+# Maximum Difference Problem (With Order Constraint)
+
+## Problem Description
+Given an array `arr[]` of size `n`, find the maximum value of:
+
+    arr[j] - arr[i]
+
+such that:
+
+    j > i
+
+If no such pair exists that gives a positive difference, return `-1`.
+
+---
+
+## Input
+- An integer array `arr[]`
+- Size of array `n`
+
+## Output
+- Maximum value of `arr[j] - arr[i]` where `j > i`
+- Return `-1` if no valid positive difference exists
+
+---
+
+## Constraints
+- 1 ≤ n ≤ 10^5
+- -10^9 ≤ arr[i] ≤ 10^9
+
+---
+
+## Example 1
+
+Input:
+arr = [2, 3, 10, 6, 4, 8, 1]
+
+Output:
+8
+
+Explanation:
+Maximum difference is 10 - 2 = 8
+
+---
+
+## Example 2
+
+Input:
+arr = [7, 9, 5, 6, 3, 2]
+
+Output:
+2
+
+Explanation:
+Maximum difference is 9 - 7 = 2
+
+---
+
+## Example 3
+
+Input:
+arr = [10, 8, 7, 6]
+
+Output:
+-1
+
+Explanation:
+Array is in decreasing order, so no positive difference exists.

@@ -1,0 +1,133 @@
+
+class Solution {
+    
+    int maxNormalSum(int arr[],int n){
+        
+        int res = arr[0], maxEnd = arr[0];                                                             // Kadane: res=global max, maxEnd=current max
+        
+        for(int i=1;i<n;i++){
+            maxEnd = Math.max(maxEnd+arr[i], arr[i]);                                                       // extend or restart
+            res = Math.max(res,maxEnd);                                                         // update global max
+        }
+        return res;
+    }
+    
+    
+    public int maxCircularSum(int arr[]) {
+        
+        int n = arr.length;
+        int maxSum = 0;                                                                       // total array sum
+        
+        int maxNormal = maxNormalSum(arr,n);                                         // normal Kadane result
+         
+        if(maxNormal < 0){                                                             // if all elements negative
+            return maxNormal;
+        }
+        
+        for(int i=0;i<n;i++){
+            maxSum += arr[i];                                                      // calculate total sum
+            arr[i] = -arr[i];                                                      // invert elements (for min subarray trick)
+        }
+        
+        int maxCircle = maxSum + maxNormalSum(arr,n);                                         // circular case
+        return Math.max(maxCircle, maxNormal);                                           // final answer
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
+
+Idea: Take the maximum of the following two
+
+i) Maximum Sum of a Normal Subarray (Easy: Kadane)
+ii) Maximum Sum of a Circular Subarray 
+
+First find the min sum subarray and then substract that with the total sum 
+
+-----------------------------------------------------------------------------
+
+arr = {5, -2, 3, 4}
+
+``````````````````````````````````````````````````````````````
+1️⃣ maxNormalSum
+
+Start:
+maxEnd = 5, res = 5
+
+i=1 →
+maxEnd = max(5-2, -2) = 3
+res = 5
+
+i=2 →
+maxEnd = max(3+3, 3) = 6
+res = 6
+
+i=3 →
+maxEnd = max(6+4, 4) = 10
+res = 10
+
+👉 maxNormal = 10
+
+``````````````````````````````````````````````````````````````
+
+2️⃣ Inversion Loop
+
+i=0 → maxSum=5, arr[0]=-5
+i=1 → maxSum=3, arr[1]=2
+i=2 → maxSum=6, arr[2]=-3
+i=3 → maxSum=10, arr[3]=-4
+
+👉 maxSum = 10
+👉 new arr = {-5, 2, -3, -4}
+
+``````````````````````````````````````````````````````````````
+
+3️⃣ maxNormalSum (inverted array)
+
+Start:
+maxEnd = -5, res = -5
+
+i=1 →
+maxEnd = max(-5+2, 2) = 2
+res = 2
+
+i=2 →
+maxEnd = max(2-3, -3) = -1
+res = 2
+
+i=3 →
+maxEnd = max(-1-4, -4) = -4
+res = 2
+
+👉 result = 2
+
+``````````````````````````````````````````````````````````````
+
+4️⃣ Final
+
+maxCircle = 10 + 2 = 12
+maxNormal = 10
+
+Answer = 12 🔥
+
+//////////////////////////////////////////////////////////////////////
+
+Max Circular Subarray Sum:
+You are given a circular array arr[] of integers, find the maximum possible sum of a non-empty subarray. In a circular array, the subarray can start at the end and wrap around to the beginning. Return the maximum non-empty subarray sum, considering both non-wrapping and wrapping cases.
+
+Examples:
+
+Input: arr[] = [8, -8, 9, -9, 10, -11, 12]
+Output: 22
+Explanation: Starting from the last element of the array, i.e, 12, and moving in a circular fashion, we have max subarray as 12, 8, -8, 9, -9, 10, which gives maximum sum as 22.
+
+Input: arr[] = [10, -3, -4, 7, 6, 5, -4, -1]
+Output: 23
+Explanation: Maximum sum of the circular subarray is 23. The subarray is [7, 6, 5, -4, -1, 10].
+
+Input: arr[] = [5, -2, 3, 4]
+Output: 12
+Explanation: The circular subarray [3, 4, 5] gives the maximum sum of 12.
+
+Constraints:
+1 ≤ arr.size() ≤ 105
+-104 ≤ arr[i] ≤ 104

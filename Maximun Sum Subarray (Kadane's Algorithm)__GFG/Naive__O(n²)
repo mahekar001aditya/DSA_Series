@@ -1,0 +1,93 @@
+
+class Solution {
+    int maxSubarraySum(int[] arr) {
+
+        int n = arr.length;              // Length of array
+
+        int res = arr[0];                // Initialize result with first element
+
+        for(int i = 0; i < n; i++) {     // Outer loop: starting index of subarray
+
+            int curr = 0;                // Current sum for subarrays starting at i
+
+            for(int j = i; j < n; j++) { // Inner loop: ending index of subarray
+
+                curr += arr[j];          // Add current element to running sum
+
+                res = Math.max(res, curr); // Update result if current sum is larger
+            }
+        }
+        return res;                      // Return maximum subarray sum
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+ Array: [1, -2, 3, -1, 2]
+
+Initial:
+res = 1
+i = 0:
+        curr = 0
+        curr = 1
+        curr = 1 - 2 = -1
+        curr = -1 + 3 = 2    res = 2
+        curr = 2 - 1 = 1
+        curr = 1 + 2 = 3    res = 3
+
+
+i = 1:
+        curr = 0
+        curr = -2
+        curr = -2 + 3 = 1
+        curr = 1 - 1 = 0
+        curr = 0 + 2 = 2
+
+
+i = 2:
+        curr = 0
+        curr = 3
+        curr = 3 - 1 = 2
+        curr = 2 + 2 = 4    res = 4
+
+i = 3
+        curr = 0
+        curr = -1
+        curr = -1 + 2 = 1
+
+i = 4
+        curr = 0
+        curr = 2
+
+res = 4
+
+Final Answer:
+              Maximum Subarray Sum = 4
+              Subarray = [3, -1, 2]
+////////////////////////////////////////////////////////////////////////////
+
+Maximun Sum Subarray (Kadane's Algorithm):
+You are given an integer array arr[]. You need to find the maximum sum of a subarray (containing at least one element) in the array arr[].
+
+Note : A subarray is a continuous part of an array.
+
+Examples:
+
+Input: arr[] = [2, 3, -8, 7, -1, 2, 3]
+Output: 11
+Explanation: The subarray [7, -1, 2, 3] has the largest sum 11.
+
+Input: arr[] = [-2, -4]
+Output: -2
+Explanation: The subarray [-2] has the largest sum -2.
+
+Input: arr[] = [5, 4, 1, 7, 8]
+Output: 25
+Explanation: The subarray [5, 4, 1, 7, 8] has the largest sum 25.
+
+Constraints:
+1 ≤ arr.size() ≤ 105
+-104 ≤ arr[i] ≤ 104
+
+
+

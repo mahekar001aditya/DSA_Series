@@ -26,9 +26,11 @@ class Solution {
 arr = {5, -2, 3, 4}
 
 i = 0 : currMax = 10   res = 10
-i = 1 : currMax = 5    res = 10
-i = 2 : currMax = 7    res = 10
-i = 3 : currMax = 10   res = 10
+i = 1 : currMax = 5   
+i = 2 : currMax = 7    res = 12
+i = 3 : currMax = 10 
+
+res = 12
 
 ///////////////////////////////////////////////////////////////////////
 

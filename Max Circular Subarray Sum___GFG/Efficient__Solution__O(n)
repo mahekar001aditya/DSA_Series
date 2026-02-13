@@ -45,69 +45,23 @@ First find the min sum subarray and then substract that with the total sum
 
 -----------------------------------------------------------------------------
 
-arr = {5, -2, 3, 4}
+arr[] = {8, -4, 3, -5, 4}
 
-``````````````````````````````````````````````````````````````
-1️⃣ maxNormalSum
+arr[] = {8, -4, 3, -5, 4}
+        maxNormal = 8
+        arr_sum = 6
 
-Start:
-maxEnd = 5, res = 5
+After Inversion:
+                    arr[] = {-8, 4, -3, 5, -4}
 
-i=1 →
-maxEnd = max(5-2, -2) = 3
-res = 5
+                    max_circular = 6 + 6 
+                                 = 12
+                    
+                    res = max(maxNormal, max_Circular)
+                        = max(8,12)
+                        = 12
 
-i=2 →
-maxEnd = max(3+3, 3) = 6
-res = 6
-
-i=3 →
-maxEnd = max(6+4, 4) = 10
-res = 10
-
-👉 maxNormal = 10
-
-``````````````````````````````````````````````````````````````
-
-2️⃣ Inversion Loop
-
-i=0 → maxSum=5, arr[0]=-5
-i=1 → maxSum=3, arr[1]=2
-i=2 → maxSum=6, arr[2]=-3
-i=3 → maxSum=10, arr[3]=-4
-
-👉 maxSum = 10
-👉 new arr = {-5, 2, -3, -4}
-
-``````````````````````````````````````````````````````````````
-
-3️⃣ maxNormalSum (inverted array)
-
-Start:
-maxEnd = -5, res = -5
-
-i=1 →
-maxEnd = max(-5+2, 2) = 2
-res = 2
-
-i=2 →
-maxEnd = max(2-3, -3) = -1
-res = 2
-
-i=3 →
-maxEnd = max(-1-4, -4) = -4
-res = 2
-
-👉 result = 2
-
-``````````````````````````````````````````````````````````````
-
-4️⃣ Final
-
-maxCircle = 10 + 2 = 12
-maxNormal = 10
-
-Answer = 12 🔥
+🔥 Final Answer = 12
 
 //////////////////////////////////////////////////////////////////////
 

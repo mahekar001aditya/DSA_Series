@@ -1,6 +1,6 @@
 
 class Solution {
-    
+     
     int maxNormalSum(int arr[],int n){
         
         int res = arr[0], maxEnd = arr[0];                                                             // Kadane: res=global max, maxEnd=current max

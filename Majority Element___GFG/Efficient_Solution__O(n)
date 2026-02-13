@@ -1,0 +1,108 @@
+
+class Solution {
+    int majorityElement(int arr[]) {
+    
+        int res = 0;                                                  // candidate index
+        int n = arr.length;
+        int count = 1;                                              // vote count
+        
+        // Boyer–Moore Voting Phase
+        for(int i=1;i<n;i++){
+            if(arr[res] == arr[i]){
+                count++;                                          // same → increase vote
+            }
+            else{
+                count--;                                        // different → decrease vote
+            }
+            
+            if(count == 0){                                     // candidate cancelled
+                res = i;                                        // new candidate
+                count = 1;
+            }
+        }  
+        
+        // Verification Phase
+        count = 0;                                               // reset
+        
+        for(int i=0;i<n;i++){
+            if(arr[res] == arr[i]){
+                count++;
+            }
+        }
+        
+        if(count <= n/2)
+            return -1;                                          // no majority
+        
+        return arr[res];                                        // majority element
+    }
+}
+
+////////////////////////////////////////////////////////////////////
+
+arr[] = [8,8,6,6,6,4,6]
+n = 7
+
+Initially:
+res = 0 (8)
+count = 1
+
+i = 1 → arr[1] = 8
+      same as arr[res]
+      count = 2
+
+i = 2 → arr[2] = 6
+      different
+      count = 1
+
+i = 3 → arr[3] = 6
+      different
+      count = 0
+      → reset: res = 3 (6), count = 1
+
+i = 4 → arr[4] = 6
+      same
+      count = 2
+
+i = 5 → arr[5] = 4
+      different
+      count = 1
+
+i = 6 → arr[6] = 6
+      same
+      count = 2
+
+Final candidate:
+                  arr[res] = 6
+
+Verification:
+
+Count of 6 = 4
+4 > 7/2 (3)
+
+Majority Element = 6
+
+////////////////////////////////////////////////////////////////////
+
+Majority Element (Boyer–Moore Votinng Algorithm):
+
+Given an array arr[]. Find the majority element in the array. If no majority element exists, return -1.
+Note: A majority element in an array is an element that appears strictly more than arr.size()/2 times in the array.
+
+Examples:
+
+Input: arr[] = [1, 1, 2, 1, 3, 5, 1]
+Output: 1
+Explanation: Since, 1 is present more than 7/2 times, so it is the majority element.
+
+Input: arr[] = [7]
+Output: 7
+Explanation: Since, 7 is single element and present more than 1/2 times, so it is the majority element.
+
+Input: arr[] = [2, 13]
+Output: -1
+Explanation: Since, no element is present more than 2/2 times, so there is no majority element.
+
+Constraints:
+1 ≤ arr.size() ≤ 105
+1 ≤ arr[i] ≤ 105
+

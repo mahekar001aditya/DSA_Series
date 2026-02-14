@@ -1,0 +1,89 @@
+void printGroups(boolean arr[], int n){
+
+  for(int i=1;i<n;i++){                        // start from second element
+      if(arr[i-1] != arr[i]){                 // group change detected
+          
+        if(arr[i] != arr[0]){                 // new group different from first group → start flip
+            System.out.println("From "+ i +" to ");
+        }
+        else{                                 // group same as first → end flip
+            System.out.println(i-1);
+        }
+      }
+  }
+
+  if(arr[n-1] != arr[0]){                     // if last group needs closing
+      System.out.println(n-1);
+  }
+}
+
+///////////////////////////////////////////////////////////
+
+0 0 1 1 0 0 1 1 0
+
+i=1  → 0 == 0  → no change
+i=2  → 0 != 1  → From 2 to
+i=3  → 1 == 1  → no change
+i=4  → 1 != 0  → 3
+i=5  → 0 == 0  → no change
+i=6  → 0 != 1  → From 6 to
+i=7  → 1 == 1  → no change
+i=8  → 1 != 0  → 7
+
+///////////////////////////////////////////////////////////
+
+Notes: If flip from the second element we will get equal or lesser flip to make same
+
+
+Only 2 possibilities:
+
+Group counts Differ by One:
+  1 1 0 0 0 1 1 1 0 0 1
+  0 0 1 1 0 0 0 1 1 0 0
+
+Group counts are same:
+  0 0 1 1 1 0 0 0 0 1 1
+  1 1 0 0 0 0 1 1 1 1 0
+
+///////////////////////////////////////////////////////////
+
+Minimum Group Flips to Make Binary Array Elements Same:
+The problem statement asks us to find the minimum number of group flips required to convert a given binary array into an array that either contains all 1s or all 0s. A group flip is defined as flipping a continuous sequence of elements in the array.
+
+For example, 
+              consider the binary array {1, 1, 0, 0, 0, 1}. We have two choices - we can either make all elements 0 or all elements 1. If we choose to make all elements 0, we need to perform two group flips (from index 2 to 4) to get {1, 1, 0, 0, 0, 0}. If we choose to make all elements 1, we need to perform one group flip (from index 0 to 1) to get {1, 1, 1, 1, 1, 1}. Since making all elements 1 takes the least group flips, we do that.
+Similarly, for the input array {1, 0, 0, 0, 1, 0, 0, 1, 0, 1}, we can perform three group flips to get either {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} or {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}. Alternatively, we can perform three separate group flips from index 1 to 3, from index 5 to 6, and from index 8 to 8 to get {1, 1, 1, 0, 1, 0, 0, 1, 1, 1}.
+In cases where the input array already consists of all 1s or all 0s, no group flips are needed and the output will be empty. For example, for the input array {0, 0, 0}, the output will be empty because we need not make any change. Similarly, for the input array {1, 1, 1}, the output will be empty.
+In cases where the input array consists of only two distinct values, the minimum number of group flips needed will be the same, regardless of whether we choose to make all elements 0 or all elements 1. For example, for the input array {0, 1}, we can either perform one group flip from index 0 to 0 or one group flip from index 1 to 1, and the number of flips required will be the same.
+
+
+Examples : 
+
+Input : arr[] = {1, 1, 0, 0, 0, 1}
+Output :  From 2 to 4
+Explanation : We have two choices, we make all 0s or do all 1s.  We need to do two group flips to make all elements 0 and one group flip to make all elements 1.  Since making all elements 1 takes least group flips, we do this.
+
+Input : arr[] = {1, 0, 0, 0, 1, 0, 0, 1, 0, 1}
+Output :  
+From 1 to 3
+From 5 to 6
+From 8 to 8
+
+Input : arr[] = {0, 0, 0}
+Output :  
+Explanation : Output is empty, we need not to make any change
+
+Input : arr[] = {1, 1, 1}
+Output :  
+Explanation : Output is empty, we need not to make any change
+
+Input : arr[] = {0, 1}
+Output :   
+From 0 to 0  
+OR
+From 1 to 1
+Explanation :  Here number of flips are same either we make all elements as 1 or all elements as 0.
+
+
+
+ 

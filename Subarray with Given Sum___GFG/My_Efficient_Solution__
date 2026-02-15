@@ -1,0 +1,87 @@
+
+
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+
+    ArrayList<Integer> list = new ArrayList<>();
+    
+    int n = arr.length;
+    int i = 0, j = 0, curr = 0;
+    
+        while(i<=n){
+             
+           if(curr < target){
+               if(i == n){break;}
+               curr += arr[i];
+               i++;
+           }
+           else if(curr > target){
+               curr -= arr[j];
+               j++;
+           }
+           else{
+               list.add(j+1);
+               list.add(i);
+               return list;
+           }
+        }
+        
+        list.add(-1);
+        
+        return list;
+    }
+}     
+///////////////////////////////////////////////////////////
+
+Note: We can use window sliding Technique with a window of variable size
+
+
+Input:
+arr = [3, 2, 0, 4, 7]  
+target = 6
+-------------------------
+curr = 0
+
+i=0, j=0 → curr = 3  
+     j=1 → curr = 5  
+     j=2 → curr = 5  
+     j=3 → curr = 9  
+     j=4 → curr = 16  
+ 
+i=1: j=1 → curr = 2  
+     j=2 → curr = 2  
+     j=3 → curr = 6 ✅  
+
+Return:
+i+1 = 2  
+j+1 = 4  
+
+---
+
+# ✅ Output
+[2, 4]
+
+Subarray:
+[2, 0, 4]
+
+Sum:
+2 + 0 + 4 = 6 ✔
+
+///////////////////////////////////////////////////////////////////////////////
+
+Subarray with Given Sum:
+Given a 1-based indexing array arr[] of non-negative integers and an integer sum. Find the left and right indexes(1-based indexing) of that subarray that is equal to the given sum. In case of multiple subarrays, find the subarray indexes which come first on moving from left to right. If no such subarray exists return an array consisting of element -1.
+
+Examples:
+
+Input: arr[] = [15, 2, 4, 8, 9, 5, 10, 23], target = 23
+Output: [2, 5]
+Explanation: Sum of subarray arr[2...5] is 2 + 4 + 8 + 9 = 23.
+
+Input: arr[] = [1, 10, 4, 0, 3, 5], target = 7
+Output: [3, 5]
+Explanation: Sum of subarray arr[3...5] is 4 + 0 + 3 = 7.
+
+Input: arr[] = [1, 4], target = 0
+Output: [-1]
+Explanation: There is no subarray with 0 sum.

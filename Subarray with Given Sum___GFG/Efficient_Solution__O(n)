@@ -1,0 +1,58 @@
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+        ArrayList<Integer> list = new ArrayList<>();   // result list
+        int s = 0, curr = 0, n = arr.length;           // s=start pointer, curr=current sum
+
+        for(int e = 0; e < n; e++){                    // e=end pointer
+            curr += arr[e];                             // add arr[e] to current sum
+
+            while(curr > target && e <= n){            // shrink window from start while sum > target
+                curr -= arr[s];                         // remove arr[s] from sum
+                s++;                                    // move start forward
+            }
+
+            if(curr == target){                         // sum matches target
+                list.add(s + 1);                        // 1-based start index
+                list.add(e + 1);                        // 1-based end index
+                return list;                             // return first matching subarray
+            }
+        }
+
+        list.add(-1);                                     // no subarray found
+        return list;
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+# Sliding Window Dry Run: s, e, curr
+
+Input: arr = [4, 8, 12, 5], target = 17
+
+s = 0, e = 0, curr = 4  
+       e = 1, curr = 12  
+       e = 2, curr = 24  
+s = 1, e = 2, curr = 20  
+s = 2, e = 2, curr = 12  
+s = 2, e = 3, curr = 17 ✅ match
+
+//////////////////////////////////////////////////////////////////////////////
+
+Subarray with Given Sum:
+Given a 1-based indexing array arr[] of non-negative integers and an integer sum. Find the left and right indexes(1-based indexing) of that subarray that is equal to the given sum. In case of multiple subarrays, find the subarray indexes which come first on moving from left to right. If no such subarray exists return an array consisting of element -1.
+
+Examples:
+
+Input: arr[] = [15, 2, 4, 8, 9, 5, 10, 23], target = 23
+Output: [2, 5]
+Explanation: Sum of subarray arr[2...5] is 2 + 4 + 8 + 9 = 23.
+
+Input: arr[] = [1, 10, 4, 0, 3, 5], target = 7
+Output: [3, 5]
+Explanation: Sum of subarray arr[3...5] is 4 + 0 + 3 = 7.
+
+Input: arr[] = [1, 4], target = 0
+Output: [-1]
+Explanation: There is no subarray with 0 sum.
+

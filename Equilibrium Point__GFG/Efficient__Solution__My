@@ -1,0 +1,69 @@
+
+class Solution {
+    public static int findEquilibrium(int arr[]) {
+        int n = arr.length;
+        int ps[] = new int[n];
+        int ss[] = new int[n];
+        
+        ss[n-1] = arr[n-1];
+        ps[0] = arr[0];
+        
+        for(int i=1;i<n;i++){
+            ps[i] = ps[i-1] + arr[i];
+        }
+        
+        for(int j=n-2;j>=0;j--){
+            ss[j] = ss[j+1] + arr[j];
+        }
+        
+       for(int k = 0;k<n;k++){
+           
+           int ls = (k == 0) ? 0:ps[k-1];
+           int rs = (k == n-1) ? 0:ss[k+1];
+           
+           if(ls == rs){
+               return k;
+           }
+       }
+        
+        return -1;
+    }
+}
+
+///////////////////////////////////////////////////////////////
+
+arr = [3,4,8,-9,9,7]
+
+i) Compute Prefix Sum 
+    ps = [3,7,15,6,15,22]
+
+ii) Compute Suffix Sum
+    ss = [22,19,15,7,16,7]
+
+iii) For every Element (except corner ones)
+     check if ps[i-1] is same as ss[i+1]
+
+///////////////////////////////////////////////////////////////
+
+Equilibrium Point:
+Given an array of integers arr[], the task is to find the first equilibrium point in the array.
+The equilibrium point in an array is an index (0-based indexing) such that the sum of all elements before that index is the same as the sum of elements after it. Return -1 if no such point exists. 
+
+Examples:
+
+Input: arr[] = [1, 2, 0, 3]
+Output: 2 
+Explanation: The sum of left of index 2 is 1 + 2 = 3 and sum on right of index 2 is 3.
+
+Input: arr[] = [1, 1, 1, 1]
+Output: -1
+Explanation: There is no equilibrium index in the array.
+
+Input: arr[] = [-7, 1, 5, 2, -4, 3, 0]
+Output: 3
+Explanation: The sum of left of index 3 is -7 + 1 + 5 = -1 and sum on right of index 3 is -4 + 3 + 0 = -1.
+
+Constraints:
+3 <= arr.size() <= 105
+-104 <= arr[i] <= 104
+

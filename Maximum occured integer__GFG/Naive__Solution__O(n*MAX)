@@ -1,32 +1,30 @@
 
-
 class Solution {
     public int maxOccured(List<Integer> L, List<Integer> R) {
         
-        int freq[] = new int[100];                                                                       // Frequency array (assuming values are < 100)
+        int max = 0;
+        for(int t = 0; t < R.size(); t++){
+            max = Math.max(max, R.get(t));        // find maximum value in R (right boundary)
+        }
+
+        int freq[] = new int[max + 1];            // freq[number] stores how many ranges include that number
         
-                                                                                                                                        // Step 1: Traverse all ranges
         for(int i = 0; i < L.size(); i++){
             
-            int left = L.get(i);                                                                                         // starting point of range
-            int right = R.get(i);                                                                                            // ending point of range
-                                                                                                                  
-                                                                                                // Increase frequency for every number in this range
-            for(int j = left; j <= right; j++){
-                freq[j]++;
+            for(int j = L.get(i); j <= R.get(i); j++){
+                freq[j]++;                        // increase count for each number inside the range
             }
         } 
         
-                                                                                                  // Step 2: Find index with maximum frequency
-        int res = 0;                                                                                         // assume 0 has maximum initially
+        int res = 0;
         
-        for(int j = 1; j < 100; j++){
+        for(int j = 1; j <= max; j++){
             if(freq[j] > freq[res]){
-                res = j;                                                                                     // update result if higher frequency found
+                res = j;                          // update result if higher frequency found
             }
         }
         
-        return res;                                                                                           // number that appeared in maximum ranges
+        return res;                               // return number with maximum occurrence
     }
 }
 

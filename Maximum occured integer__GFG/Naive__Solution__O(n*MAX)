@@ -1,0 +1,86 @@
+
+
+class Solution {
+    public int maxOccured(List<Integer> L, List<Integer> R) {
+        
+        int freq[] = new int[100];                                                                       // Frequency array (assuming values are < 100)
+        
+                                                                                                                                        // Step 1: Traverse all ranges
+        for(int i = 0; i < L.size(); i++){
+            
+            int left = L.get(i);                                                                                         // starting point of range
+            int right = R.get(i);                                                                                            // ending point of range
+                                                                                                                  
+                                                                                                // Increase frequency for every number in this range
+            for(int j = left; j <= right; j++){
+                freq[j]++;
+            }
+        } 
+        
+                                                                                                  // Step 2: Find index with maximum frequency
+        int res = 0;                                                                                         // assume 0 has maximum initially
+        
+        for(int j = 1; j < 100; j++){
+            if(freq[j] > freq[res]){
+                res = j;                                                                                     // update result if higher frequency found
+            }
+        }
+        
+        return res;                                                                                           // number that appeared in maximum ranges
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+L = [1, 4, 3, 1]
+R = [15, 8, 5, 4]
+
+Ranges:
+[1,15]
+[4,8]
+[3,5]
+[1,4]After processing all ranges:
+
+Index : 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+freq  : 0  2  2  3  4  3  2  2  2  1  1  1  1  1  1  1
+
+
+Counting frequency (important values only):
+
+1 → appears in [1,15] and [1,4] = 2
+2 → appears in [1,15] and [1,4] = 2
+3 → appears in [1,15], [3,5], [1,4] = 3
+4 → appears in [1,15], [4,8], [3,5], [1,4] = 4  ✅
+5 → appears in [1,15], [4,8], [3,5] = 3
+6 → appears in [1,15], [4,8] = 2
+7 → appears in [1,15], [4,8] = 2
+8 → appears in [1,15], [4,8] = 2
+9–15 → appear only in [1,15] = 1
+
+Maximum frequency = 4
+Smallest number with max frequency = 4
+
+Output = 4
+
+/////////////////////////////////////////////////////////////////////////
+
+Maximum occured integer:
+
+You are given two integer arrays L[] and R[], where each L[i] and R[i] define the start and end of a range respectively.
+The goal is to find the integer that appears in the most number of these ranges. If multiple integers occur in the same maximum number of ranges, then return the smallest integer among them. 
+
+Examples :
+
+Input: L[] = [1, 4, 3, 1], R[] = [15, 8, 5, 4]
+Output: 4
+Explanation: The given ranges are [1, 15] [4, 8] [3, 5] [1, 4]. The smallest number that is most common or appears most times in the ranges is 4.
+
+Input: L[] = [1, 5, 9, 13, 21], R[] = [15, 8, 12, 20, 30]
+Output: 5
+Explanation: The given ranges are [1, 15] [5, 8] [9, 12] [13, 20] [21, 30]. The smallest number that is most common or appears most times in the ranges is 5.
+
+Constraints:
+1 ≤ L.size() ≤ 106
+0 ≤ L[i], R[i] ≤ 106
+

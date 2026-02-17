@@ -1,0 +1,64 @@
+
+class Solution {
+    public int binarysearch(int[] arr, int low, int high, int k) {
+        if(low > high) return -1;                      // base case: element not found
+
+        int mid = (low + high) / 2;                    // calculate middle index
+
+        if(arr[mid] == k) return mid;                  // element found at mid
+        else if(arr[mid] > k) 
+            return binarysearch(arr, low, mid - 1, k);  // search in left half
+        else 
+            return binarysearch(arr, mid + 1, high, k); // search in right half
+    }
+}
+
+/////////////////////////////////////////////////////////////////////
+
+# Binary Search Backtracking Trace
+
+**Array:** [10, 20, 30, 40, 50, 60, 70]  
+**Search for:** 20
+
+---
+
+**Call:** `bSearch(arr, 0, 6, 20)`
+
+1. `low = 0`, `high = 6` → `mid = (0+6)/2 = 3` → `arr[3] = 40`  
+   - 40 > 20 → go left (`low = 0`, `high = 2`)  
+
+2. `low = 0`, `high = 2` → `mid = (0+2)/2 = 1` → `arr[1] = 20`  
+   - 20 == 20 → found! return index 1  
+
+---
+
+**Backtracking view:**  
+- First choice: mid=3 → too big → discard right half → recurse left  
+- Second choice: mid=1 → found → recursion returns  
+- The discarded right half is **like backtracking**, recursion “backs out” of unnecessary paths.
+
+/////////////////////////////////////////////////////////////////////////
+
+Binary Search:
+Given a sorted array arr[] and an integer k, find the position(0-based indexing) at which k is present in the array using binary search. If k doesn't exist in arr[] return -1. 
+
+Note: If multiple occurrences are there, please return the smallest index.
+
+Examples:
+
+Input: arr[] = [1, 2, 3, 4, 5], k = 4
+Output: 3
+Explanation: 4 appears at index 3.
+
+Input: arr[] = [11, 22, 33, 44, 55], k = 445
+Output: -1
+Explanation: 445 is not present.
+
+Input: arr[] = [1, 1, 1, 1, 2], k = 1
+Output: 0
+Explanation: 1 appears at index 0.
+
+Constraints:
+1 ≤ arr.size() ≤ 105
+1 ≤ arr[i] ≤ 106
+1 ≤ k ≤ 106

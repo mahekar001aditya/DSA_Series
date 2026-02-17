@@ -1,0 +1,59 @@
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+# Function: firstOccurrence
+
+## **Description**
+The `firstOccurrence` function scans an array from left to right and returns the **index of the first occurrence** of a given element `x`.  
+
+- **Input:**  
+  - `arr[]` → integer array  
+  - `n` → size of the array  
+  - `x` → element to find  
+
+- **Output:**  
+  - Returns the **index (0-based)** of the first occurrence of `x`  
+  - Returns `-1` if `x` is not present in the array  
+
+- **Time Complexity:** `O(n)`  
+- **Space Complexity:** `O(1)`  
+
+---
+
+Examples
+
+Example 1: Element present multiple times
+int[] arr = {10, 20, 20, 30, 40};
+int x = 20;
+System.out.println(firstOccurrence(arr, arr.length, x)); // Output: 1
+Explanation: The first occurrence of 20 is at index 1.
+
+Example 2: Element not present
+int[] arr = {10, 20, 30};
+int x = 25;
+System.out.println(firstOccurrence(arr, arr.length, x)); // Output: -1
+Explanation: 25 is not present → returns -1.
+
+Example 3: Element at first index
+int[] arr = {5, 10, 15};
+int x = 5;
+System.out.println(firstOccurrence(arr, arr.length, x)); // Output: 0
+Explanation: 5 is at index 0 → returns 0.
+
+Example 4: Element at last index
+int[] arr = {1, 2, 3, 4};
+int x = 4;
+System.out.println(firstOccurrence(arr, arr.length, x)); // Output: 3
+Explanation: 4 is at index 3 → returns 3.
+

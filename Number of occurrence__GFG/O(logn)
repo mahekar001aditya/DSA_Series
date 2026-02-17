@@ -1,0 +1,93 @@
+
+class Solution {
+    
+    int lastOcc(int arr[], int low, int high, int x, int n){
+
+        if(low > high) return -1;                                                                    // base case
+
+        int mid = (low + high) / 2;                                                                    // find middle
+
+        if(arr[mid] == x){                                                                     // if element found
+              if(mid == n-1 || arr[mid+1] != x)                                                  // check last occurrence
+                return mid;                                                                    // return index
+            else
+                return lastOcc(arr, mid+1, high, x, n);                                                    // search right
+        }
+          else if(arr[mid] > x)                                                                          // if mid > x
+            return lastOcc(arr, low, mid-1, x, n);                                                         // search left
+        else                                                                                     // if mid < x
+            return lastOcc(arr, mid+1, high, x, n);                                                // search right
+    }
+
+    int firstOccur(int arr[], int low, int high, int x){
+
+        if(low > high) return -1;                                                                  // base case
+
+        int mid = (low + high) / 2;                                                              // find middle
+
+        if(arr[mid] == x){                                                                       // if found
+            if(mid == 0 || arr[mid-1] != x)                                                        // check first occurrence
+                return mid;                                                                          // return index
+            else
+                return firstOccur(arr, low, mid-1, x);                                             // search left
+        }
+        else if(arr[mid] > x)                                                                     // if mid > x
+            return firstOccur(arr, low, mid-1, x);                                                 // search left
+        else                                                                                     // if mid < x
+            return firstOccur(arr, mid+1, high, x);                                                // search right
+    }
+
+    int countFreq(int[] arr, int target) {
+
+        int n = arr.length;                                                                  // array length
+        int low = 0, high = n-1;                                                               // search boundaries
+
+        int f = firstOccur(arr, low, high, target);                                                 // find first
+
+        if(f == -1) return 0;                                                                      // not present
+
+        return lastOcc(arr, low, high, target, n) - f + 1;                                         // count
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Index:   0    1    2    3    4    5
+        --------------------------------
+Array:  [10,  20,  20,  20,  40,  40]
+               ↑           ↑
+             FIRST       LAST
+               1           3
+
+✅ Result
+
+First = 1
+Last  = 3
+Count = 3
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Number of occurrence:
+
+Given a sorted array, arr[] and a number target, you need to find the number of occurrences of target in arr[]. 
+
+Examples :
+
+Input: arr[] = [1, 1, 2, 2, 2, 2, 3], target = 2
+Output: 4
+Explanation: target = 2 occurs 4 times in the given array so the output is 4.
+
+Input: arr[] = [1, 1, 2, 2, 2, 2, 3], target = 4
+Output: 0
+Explanation: target = 4 is not present in the given array so the output is 0.
+
+Input: arr[] = [8, 9, 10, 12, 12, 12], target = 12
+Output: 3
+Explanation: target = 12 occurs 3 times in the given array so the output is 3.
+
+Constraints:
+1 ≤ arr.size() ≤ 106
+1 ≤ arr[i] ≤ 106
+1 ≤ target ≤ 106
+

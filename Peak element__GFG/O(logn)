@@ -1,0 +1,52 @@
+class Solution {
+    public int peakElement(int[] arr) {
+
+        int n = arr.length;                          // Get length of array
+        int low = 0, high = n - 1;                   // Initialize binary search range
+
+        while(low <= high){                          // Binary search loop
+
+            int mid = (low + high) / 2;              // Find middle index
+
+            // Check if mid is a peak element
+            if((mid == 0 || arr[mid-1] <= arr[mid]) &&
+               (mid == n-1 || arr[mid+1] <= arr[mid])){
+                return mid;                          // Return index if peak found
+            }
+
+            // If left neighbor is greater, peak must be on left side
+            if(mid > 0 && arr[mid-1] > arr[mid]){
+                high = mid - 1;                      // Move search space to left
+            }
+            else{
+                low = mid + 1;                       // Otherwise move to right side
+            }
+        }
+
+        return -1;                                   // Safety return (theoretically never reached)
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+Peak element:
+You are given an array arr[] where no two adjacent elements are same, find the index of a peak element. An element is considered to be a peak if it is greater than its adjacent elements (if they exist).
+
+If there are multiple peak elements, Return index of any one of them. The output will be "true" if the index returned by your function is correct; otherwise, it will be "false".
+
+Note: Consider the element before the first element and the element after the last element to be negative infinity.
+
+Examples :
+
+Input: arr = [1, 2, 4, 5, 7, 8, 3]
+Output: true
+Explanation: arr[5] = 8 is a peak element because arr[4] < arr[5] > arr[6].
+
+Input: arr = [10, 20, 15, 2, 23, 90, 80]
+Output: true
+Explanation: Element 20 at index 1 is a peak since 10 < 20 > 15. Index 5 (value 90) is also a peak, but returning any one peak index is valid.
+
+Constraints:
+1 ≤ arr.size() ≤ 106
+-231 ≤ arr[i] ≤ 231 - 1
+

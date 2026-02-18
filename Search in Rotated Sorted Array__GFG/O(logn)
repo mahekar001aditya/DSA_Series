@@ -1,0 +1,62 @@
+class Solution {
+	int search(int[] arr, int key) {
+		int n = arr.length;
+		int low = 0, high = n - 1;
+
+		while(low <= high){
+			int mid = (low + high)/2;			                                                        // Middle index
+
+			if(arr[mid] == key) return mid;		                                                      // Key found
+
+			else if(arr[low] <= arr[mid]){		                                                              // Left half sorted
+				if(arr[low] <= key && key < arr[mid]) high = mid - 1;                                	// Key in left half             // ( low <= key < mid )
+				else low = mid + 1;				                                                                // Key in right half
+			}
+			else{								                                                                    // Right half sorted
+				if(arr[high] >= key && arr[mid] < key) low = mid + 1;	                                // Key in right half       // ( mid < key <= high )
+				else high = mid - 1;			                                                          	// Key in left half
+			}
+		}
+		return -1;							                                                              	// Key not found
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+Array: [4,5,6,7,0,1,2], key = 0
+
+low=0, high=6, mid=3, arr[mid]=7       // Left half sorted 4..7, key=0 not in left → search right
+low=4, high=6, mid=5, arr[mid]=1       // Left half sorted 0..1, key=0 in left → search left
+low=4, high=4, mid=4, arr[mid]=0       // Key found → return 4
+
+
+Array: [4,5,6,7,0,1,2], key = 6
+
+low=0, high=6, mid=3, arr[mid]=7       // Left half sorted 4..7, key=6 in left → search left
+low=0, high=2, mid=1, arr[mid]=5       // Left half sorted 4..5, key=6 not in left → search right
+low=2, high=2, mid=2, arr[mid]=6       // Key found → return 2
+
+/////////////////////////////////////////////////////////////////////////
+
+Search in Rotated Sorted Array
+Given an array arr[] of distinct elements, which was initially sorted in ascending order but then rotated at some unknown pivot, the task is to find the index of a target key.  If the key is not present in the array, return -1.
+
+Examples :
+
+Input: arr[] = [5, 6, 7, 8, 9, 10, 1, 2, 3], key = 3
+Output: 8
+Explanation: 3 is found at index 8.
+
+Input: arr[] = [3, 5, 1, 2], key = 6
+Output: -1
+Explanation: There is no element that has value 6.
+
+Input: arr[] = [33, 42, 72, 99], key = 42
+Output: 1
+Explanation: 42 is found at index 1.
+
+Constraints:
+1 ≤ arr.size() ≤ 106
+0 ≤ arr[i] ≤ 106
+0 ≤ key ≤ 106
+

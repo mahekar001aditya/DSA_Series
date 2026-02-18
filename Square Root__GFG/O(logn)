@@ -1,0 +1,65 @@
+
+
+
+
+
+class Solution {
+    int floorSqrt(int n) {
+
+                                                                                                    // Initialize binary search boundaries
+        int low = 1, high = n, ans = -1;
+        
+                                                                                                  // Binary search loop
+        while(low <= high){
+            int mid = (low + high) / 2;                                                           // Find mid
+
+            int msq = mid * mid;           // Square of mid
+            
+            if(msq == n){                  // Exact square root found
+                return mid;
+            }
+            else if(msq > n){              // Too big, move left
+                high = mid - 1;
+            }
+            else{                           // Too small, move right
+                low = mid + 1;
+                ans = mid;                 // Keep last valid mid
+            }
+        }
+        return ans;                        // Return floor of sqrt
+    }
+}
+
+/////////////////////////////////////////////////////////////
+
+n = 10
+low = 1, high = 10
+
+i=1, mid=5, msq=25, high=4
+i=2, mid=2, msq=4, high=4
+i=3, mid=3, msq=9, high=4
+i=4, mid=4, msq=16, high=3
+
+/////////////////////////////////////////////////////////////
+
+Square Root:
+Given a positive integer n, find the square root of n. If n is not a perfect square, then return the floor value.
+
+Floor value of any number is the greatest Integer which is less than or equal to that number.
+
+Examples:
+
+Input: n = 4
+Output: 2
+Explanation: Since, 4 is a perfect square, so its square root is 2.
+
+Input: n = 11
+Output: 3
+Explanation: Since, 11 is not a perfect square, floor of square root of 11 is 3.
+
+Input: n = 1
+Output: 1
+Explanation: 1 is a perfect sqaure, so its square root is 1.
+
+Constraints:
+1 ≤ n ≤ 3*104

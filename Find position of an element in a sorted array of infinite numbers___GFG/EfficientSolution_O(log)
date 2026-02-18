@@ -1,0 +1,40 @@
+class Solution {
+	int binarySearch(int arr[], int x, int low, int high){
+		while(low <= high){
+			int mid = (low + high)/2;			                                                      // Calculate middle index
+			if(arr[mid] == x) return mid;		                                                    // Target found
+			else if(arr[mid] > x) high = mid - 1;                                                                    	// Search left half
+			else low = mid + 1;				                                                      // Search right half
+		}
+		return -1;							                                                          // Target not found
+	}
+
+	int Search(int arr[], int x){
+		if(arr[0] == x) return 0;			                                                    // Check first element
+
+		int i = 1;
+		while(arr[i] < x){					                                                        // Expand range exponentially until arr[i] >= x
+			i = i * 2;
+		}
+
+		if(arr[i] == x) return i;			                                                      // Check if exactly equal at boundary
+
+		return binarySearch(arr, x, (i/2) + 1, i - 1);	                                    // Binary search in found range
+	}
+}
+
+////////////////////////////////////////////////////////
+
+Find position of an element in a sorted array of infinite numbers
+Given a sorted array arr[] of infinite numbers. The task is to search for an element k in the array.
+
+Examples:
+
+Input: arr[] = [3, 5, 7, 9, 10, 90, 100, 130, 140, 160, 170], k = 10
+Output: 4
+Explanation: 10 is at index 4 in array.
+
+Input: arr[] = [2, 5, 7, 9], k = 3
+Output: -1
+Explanation: 3 is not present in array.
+

@@ -1,0 +1,94 @@
+
+class Solution {
+    public double medianOf2(int a[], int b[]) {
+
+        int n1 = a.length, n2 = b.length, s1 = 0, e1 = n1;
+
+                                                                                      //    Always apply binary search on smaller array
+        if(n1 > n2) return medianOf2(b, a);
+
+        while(s1 <= e1){
+
+                                                                                    //    Partition index for first array
+            int i1 = (s1 + e1) / 2;
+
+                                                                                      //    Partition index for second array
+            int i2 = (n1 + n2 + 1) / 2 - i1;
+
+                                                                                      //    Left & Right elements around partition of array a
+            int min1 = (i1 == n1) ? Integer.MAX_VALUE : a[i1];
+            int max1 = (i1 == 0) ? Integer.MIN_VALUE : a[i1 - 1];
+
+                                                                                        //    Left & Right elements around partition of array b
+            int min2 = (i2 == n2) ? Integer.MAX_VALUE : b[i2];
+            int max2 = (i2 == 0) ? Integer.MIN_VALUE : b[i2 - 1];
+
+                                                                                                        //    Correct partition condition
+            if(max1 <= min2 && max2 <= min1){
+
+                                                                                                      //    If total elements even → average of middle two
+                if((n1 + n2) % 2 == 0){
+                    return (Math.max(max1, max2) + Math.min(min1, min2)) / 2.0;
+                }
+                else{
+                                                                                                    //    If odd → max of left side
+                    return Math.max(max1, max2);
+                }
+            }
+                                                                                                    //    Move left
+            else if(max1 > min2){
+                e1 = i1 - 1;
+            }
+                                                                                                    //    Move right
+            else{
+                s1 = i1 + 1;
+            }
+        }
+        return 0.0;
+    }
+}
+
+
+///////////////////////////////////////////////////////
+
+Formula for the partition:
+
+i2 = ⌊(n1 + n2 + 1)/2⌋= i1
+
+Explanation:
+
+n1,  n2= lengths of the two arrays
+i1 = elements from the first array in the left partition
+i2 = elements from the second array in the left partition
+⌊⋅⌋ = ensures we round down for odd totals
+
+--------------------------------------------------------
+
+- **max1** → Largest element on left side of array `a` → `a[i1-1]`
+- **min1** → Smallest element on right side of array `a` → `a[i1]`
+- **max2** → Largest element on left side of array `b` → `b[i2-1]`
+- **min2** → Smallest element on right side of array `b` → `b[i2]`
+
+///////////////////////////////////////////////////////
+
+Median of 2 Sorted Arrays of Different Sizes
+Given two sorted arrays a[] and b[], find and return the median of the combined array after merging them into a single sorted array.
+
+Examples:
+
+Input: a[] = [3, 5, 6, 12, 15], b[] = [3, 4, 6, 10, 10, 12]
+Output: 6
+Explanation: The merged array is [3, 3, 4, 5, 6, 6, 10, 10, 12, 12, 15]. So the median of the merged array is 6.
+
+Input: a[] = [2, 3, 5, 8], b[] = [10, 12, 14, 16, 18, 20]
+Output: 11
+Explanation: The merged array is [2, 3, 5, 8, 10, 12, 14, 16, 18, 20]. So the median of the merged array is (10 + 12) / 2 = 11.
+
+Input: a[] = [], b[] = [2, 4, 5, 6]
+Output: 4.5
+Explanation: The merged array is [2, 4, 5, 6]. So the median of the merged array is (4 + 5) / 2 = 4.5.
+
+Constraints: 
+1 ≤ a.size(), b.size() ≤ 106
+1 ≤ a[i], b[i] ≤ 109
+a.size() + b.size() > 0

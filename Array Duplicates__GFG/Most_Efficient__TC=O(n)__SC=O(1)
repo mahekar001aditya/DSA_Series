@@ -1,0 +1,77 @@
+
+int findRepeating(int arr[], int n){
+
+    int slow = arr[0], fast = arr[0];		                                  // initialize tortoise & hare
+
+    do{
+        slow = arr[slow];			                                             // move 1 step
+        fast = arr[arr[fast]];		                                         // move 2 steps
+    } while(slow != fast);			                                          // detect cycle (meeting point)
+
+    slow = arr[0];				                                                // reset slow to start
+
+    while(slow != fast){
+        slow = arr[slow];			                                           // move 1 step
+        fast = arr[fast];		                                           	// move 1 step
+    }
+
+    return slow;				                                              // repeating element
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+🔹 Phase 1 (Detect Meeting) => 
+                                i) Fast will enter the cycle first(or at same time)
+                                ii) In every iteration, distance increases by one
+
+🔹 Phase 2 (Find Start)
+
+
+------------------------------------------------
+arr[] = [1,3,2,4,6,5,7,3]
+
+slow = 1, fast = 1 
+
+🔹 Phase 1 (Detect Meeting)
+    slow = 1, fast = 1
+    slow = 3, fast = 4
+    slow = 4, fast = 7
+    slow = 6, fast = 4
+    slow = 7, fast = 7
+
+🔹 Phase 2 (Find Start)
+    slow = 1, fast = 7
+    slow = 3, fast = 3
+
+---------------------------------------
+
+0 → 1 → 3 → 4 → 6 → 7
+              ↑     ↓
+              └─────┘
+
+Cycle = 3 → 4 → 6 → 7 → 3
+
+Duplicate = 3
+
+//////////////////////////////////////////////////////////////////////////
+
+Array Duplicates:
+Given an array arr[] of size n, containing elements from the range 1 to n, and each element appears at most twice, return an array of all the integers that appears twice.
+
+Note: You can return the elements in any order but the driver code will print them in sorted order.
+
+Examples:
+
+Input: arr[] = [2, 3, 1, 4, 3]
+Output: [2] 
+Explanation: 2 and 3 occur more than once in the given array.
+
+Input: arr[] = [3, 1, 2] 
+Output: []
+Explanation: There is no repeating element in the array, so the output is empty.
+
+Constraints:
+1 ≤ n ≤ 106
+1 ≤ arr[i] ≤ n
+

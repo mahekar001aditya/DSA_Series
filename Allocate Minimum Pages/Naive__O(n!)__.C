@@ -1,20 +1,10 @@
 
-
-
-
-
-
-
-
-
-
-
 #include <limits.h>
 
 int sumof(int arr[],int s,int e){
     int sum = 0;
     
-    // sum from s to e-1
+                                                            // sum from s to e-1
     for(int i=s;i<e;i++){
         sum += arr[i];
     }

@@ -1,0 +1,54 @@
+
+void merge(int a[], int b[], int n, int m){
+
+    int i=0,j=0;                      // pointers for a and b
+
+    while(i<n && j<m){                // compare both arrays
+        if(a[i] <= b[j]){
+            System.out.print(a[i]+" "); // print smaller element from a
+            i++;                        // move pointer of a
+        }
+        else{
+            System.out.print(b[j]+" "); // print smaller element from b
+            j++;                        // move pointer of b
+        }
+    }
+
+    while(i<n){                       // print remaining elements of a
+        System.out.print(a[i]+" ");
+        i++;
+    }
+
+    while(j<m){                       // print remaining elements of b
+        System.out.print(b[j]+" ");
+        j++;
+    }
+}
+
+///////////////////////////////////////////////////////////
+
+Input: a=[1,3,4,5], b=[2,4,6,8], n=4, m=4
+1) i=0,j=0 → 1<=2 → print 1
+2) i=1,j=0 → 3>2 → print 2
+3) i=1,j=1 → 3<=4 → print 3
+4) i=2,j=1 → 4<=4 → print 4
+5) i=3,j=1 → 5>4 → print 4
+6) i=3,j=2 → 5<=6 → print 5
+7) i=4,j=2 → a finished
+8) print remaining b → 6
+9) print remaining b → 8
+10) Final Output → 1 2 3 4 4 5 6 8
+
+///////////////////////////////////////////////////////////
+
+Merge two sorted array:
+Given two sorted arrays, the task is to merge them in a sorted manner.
+
+Examples: 
+
+Input: arr1[] = { 1, 3, 4, 5}, arr2[] = {2, 4, 6, 8} 
+Output: arr3[] = {1, 2, 3, 4, 4, 5, 6, 8}
+
+Input: arr1[] = { 5, 8, 9}, arr2[] = {4, 7, 8} 
+Output: arr3[] = {4, 5, 7, 8, 8, 9} 
+

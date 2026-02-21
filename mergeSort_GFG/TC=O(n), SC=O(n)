@@ -1,0 +1,98 @@
+
+class Solution {
+
+   void merge(int arr[], int l, int mid, int r){
+        
+        int n = mid-l+1;                                                        // size of left subarray
+        int m = r-mid;                                                                          // size of right subarray
+        
+        int left[] = new int[n];                                                        // temp left array
+        int right[] = new int[m];                                                                 // temp right array
+        
+        for(int i=0;i<n;i++){                                                           // copy left half
+                left[i] = arr[l+i];
+        }
+        
+        for(int j=0;j<m;j++){                                                                 // copy right half
+                right[j] = arr[mid+1+j];
+        }
+        
+        int i=0,j=0,k=l;                                                            // pointers for left, right, merged array
+        
+        while(i<n && j<m){                                                            // merge both arrays
+                if(left[i] <= right[j]){
+                        arr[k++] = left[i++];
+                }
+                else{
+                        arr[k++] = right[j++];
+                }
+        }
+                                                        
+        while(i<n){                                                                  // copy remaining left elements
+                arr[k++] = left[i++];
+        }
+        
+        while(j<m){                                                                     // copy remaining right elements
+                arr[k++] = right[j++];
+        }
+   }
+    
+   void mergeSort(int arr[], int l, int r) {
+        
+        if(l >= r){ return; }       // base condition
+        
+        int mid = (l+r)/2;          // find middle
+        
+        mergeSort(arr,l,mid);       // sort left half
+        mergeSort(arr,mid+1,r);     // sort right half
+        
+        merge(arr,l,mid,r);         // merge both halves
+   }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////4
+
+[1,2,3]:
+
+Start: path=[], idx=0
+
+Choose 1 → path=[1], recurse idx=1
+
+Choose 2 → path=[1,2], recurse idx=2
+
+Choose 3 → path=[1,2,3], print [1,2,3]
+
+Backtrack: unchoose 3 → path=[1,2], skip → print [1,2]
+
+Backtrack: unchoose 2 → path=[1], skip → print [1]
+
+Backtrack: unchoose 1 → path=[], skip 1 → idx=1
+
+Choose 2 → path=[2], recurse idx=2
+
+Choose 3 → path=[2,3], print [2,3], backtrack → print [2]
+
+Skip 3 → path=[], choose 3 → path=[3], print [3], finally print []
+
+Output: [1,2,3], [1,2], [1,3], [1], [2,3], [2], [3], []
+
+//////////////////////////////////////////////////////////////////////////////
+
+Merge Sort:
+Given an array arr[], its starting position l and its ending position r. Sort the array using the merge sort algorithm.
+
+Examples:
+
+Input: arr[] = [4, 1, 3, 9, 7]
+Output: [1, 3, 4, 7, 9]
+Explanation: We get the sorted array after using merge sort
+
+Input: arr[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Explanation: We get the sorted array after using merge sort 
+
+Constraints:
+1 ≤ arr.size() ≤ 105
+1 ≤ arr[i] ≤ 105
+

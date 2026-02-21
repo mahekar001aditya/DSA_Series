@@ -1,0 +1,47 @@
+
+void merge(int a[], int b[], int n, int m){
+
+    int c[] = new int[n+m];            // result array
+
+    for(int i=0;i<n;i++){              // copy arr a
+        c[i] = a[i];
+    }
+
+    for(int j=0;j<m;j++){              // copy arr b
+        c[n+j] = b[j];
+    }
+
+    Arrays.sort(c);                    // sort merged array
+
+    for(int k=0;k<n+m;k++){            // print result
+        System.out.print(c[k] + " ");
+    }
+}
+
+///////////////////////////////////////////////////////////
+
+Input: a={1,3,4,5}, b={2,4,6,8}, n=4, m=4
+1) Create c[8] → [_,_,_,_,_,_,_,_]
+2) Copy a → c=[1,3,4,5,_,_,_,_]
+3) Copy b → c=[1,3,4,5,2,4,6,8]
+4) Call Arrays.sort(c)
+5) After sort → [1,2,3,4,4,5,6,8]
+6) k=0 → print 1
+7) k=1 → print 2
+8) k=2 → print 3
+9) k=3 → print 4
+10) Final Output → 1 2 3 4 4 5 6 8
+
+///////////////////////////////////////////////////////////
+
+Merge two sorted array:
+Given two sorted arrays, the task is to merge them in a sorted manner.
+
+Examples: 
+
+Input: arr1[] = { 1, 3, 4, 5}, arr2[] = {2, 4, 6, 8} 
+Output: arr3[] = {1, 2, 3, 4, 4, 5, 6, 8}
+
+Input: arr1[] = { 5, 8, 9}, arr2[] = {4, 7, 8} 
+Output: arr3[] = {4, 5, 7, 8, 8, 9} 
+

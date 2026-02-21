@@ -1,3 +1,4 @@
+
 class Solution {
     void selectionSort(int[] arr) {
 
@@ -19,6 +20,7 @@ class Solution {
         }
     }
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Selection Sort: Repeatedly selects the minimum element from the unsorted portion and places it at the correct position.

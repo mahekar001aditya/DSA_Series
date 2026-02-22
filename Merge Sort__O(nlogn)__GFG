@@ -1,0 +1,75 @@
+
+class Solution {
+    int[] merge(int arr[], int l, int mid, int r){
+        int n = mid+1-l;						//--- size of left subarray
+        int m = r-mid;							//--- size of right subarray
+        
+        int L[] = new int[n];					//--- temporary left array
+        int R[] = new int[m];					//--- temporary right array
+        int A[] = new int[n+m];					//--- merged array
+        
+        for(int i=0;i<n;i++){
+            L[i] = arr[l+i];						//--- copy left part
+        }
+        
+        for(int j=0;j<m;j++){
+            R[j] = arr[mid+1+j];					//--- copy right part
+        }
+        
+        int i=0, j=0, k=0;						//--- indices for L, R, A
+
+        while(i<n && j<m){						//--- merge two arrays
+            if(L[i] <= R[j]){
+                A[k++] = L[i++];
+            }
+            else{
+                A[k++] = R[j++];
+            }
+        }
+        
+        while(i<n){								//--- copy remaining L
+            A[k++] = L[i++];
+        }
+        while(j<m){								//--- copy remaining R
+            A[k++] = R[j++];
+        }
+        
+        for(j=0;j<n+m;j++){						//--- copy merged array back to arr
+            arr[l+j] = A[j];
+        }
+        
+        return arr;								//--- optional return (not needed)
+    }
+
+    void mergeSort(int arr[], int l, int r) {
+    
+        if(l >= r){ return; }					//--- base case
+        
+        int mid = l+(r-l)/2;					//--- midpoint
+        
+        mergeSort(arr,l,mid);					//--- sort left half
+        mergeSort(arr,mid+1,r);				//--- sort right half
+        merge(arr,l,mid,r);						//--- merge sorted halves
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+
+Merge Sort:
+Given an array arr[], its starting position l and its ending position r. Sort the array using the merge sort algorithm.
+
+Examples:
+
+Input: arr[] = [4, 1, 3, 9, 7]
+Output: [1, 3, 4, 7, 9]
+Explanation: We get the sorted array after using merge sort
+
+Input: arr[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Explanation: We get the sorted array after using merge sort 
+
+Constraints:
+1 ≤ arr.size() ≤ 105
+1 ≤ arr[i] ≤ 105
+

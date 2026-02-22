@@ -1,0 +1,81 @@
+
+class Solution {
+    ArrayList<Integer> intersection(int[] a, int[] b) {
+        ArrayList<Integer> list = new ArrayList<>();			//--- list to store intersection
+        int n = a.length, m = b.length, i = 0, j = 0;			//--- array lengths and pointers
+
+        while(i < n && j < m){									//--- traverse both arrays
+            if(i > 0 && a[i] == a[i-1]){						//--- skip duplicates in a
+                i++;
+                continue;
+            }
+
+            if(a[i] < b[j]){									//--- move pointer i if a[i] smaller
+                i++;
+            }
+            else if(a[i] > b[j]){								//--- move pointer j if b[j] smaller
+                j++;
+            }
+            else{												//--- a[i] == b[j], common element
+                list.add(a[i]);									//--- add to intersection list
+                i++; j++;										//--- move both pointers forward
+            }
+        }
+
+        return list;											//--- return final intersection
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+# Two-Pointer Intersection Backtrack
+
+Arrays:  
+a = [1, 2, 2, 3, 4]  
+b = [2, 2, 3, 5]
+
+Initial state:  
+i = 0, j = 0, list = []
+
+Step 1  
+i = 1, j = 0, list = []
+
+Step 2  
+i = 2, j = 1, list = [2]
+
+Step 3  
+i = 3, j = 2, list = [2]
+
+Step 4  
+i = 4, j = 3, list = [2, 3]
+
+Step 5  
+i = 5, j = 3, list = [2, 3]
+
+Final intersection list: [2, 3]
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Intersection of Two Sorted Arrays with Duplicate Elements:
+Given two sorted arrays a[] and b[], where each array may contain duplicate elements , the task is to return the elements in the intersection of the two arrays in sorted order.
+
+Intersection of two arrays can be defined as the set containing distinct common elements that are present in both of the arrays.
+
+Examples:
+
+Input: a[] = [1, 2, 3, 4, 5], b[] = [1, 2, 3, 6, 7]
+Output: 1 2 3
+Explanation: Distinct elements in both the arrays are: 1 2 3.
+
+Input: a[] = [2, 2, 3, 4, 5], b[] = [1, 1, 2, 3, 4]
+Output: 2 3 4
+Explanation: Distinct elements in both the arrays are: 2 3 4.
+
+Input: a[] = [1, 1, 1, 1, 1], b[] = [2, 2, 2, 2, 2]
+Output: []
+Explanation: No common elements.
+
+Constraints:
+1  <=  a.size(), b.size()  <=  105
+-109  <=  a[i] , b[i]  <=  109
+

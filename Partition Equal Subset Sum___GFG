@@ -1,0 +1,51 @@
+
+class Solution {
+    static boolean equalPartition(int arr[]) {
+
+        int sum = 0;                           // Total sum of array
+        for (int n : arr) {                     // Traverse array elements
+            sum += n;                           // Add element to sum
+        }
+
+        if (sum % 2 != 0)                       // If sum is odd
+            return false;                       // Cannot partition equally
+
+        int target = sum / 2;                   // Desired subset sum
+
+        boolean[] bn = new boolean[target + 1];  // DP array for sums
+        bn[0] = true;                           // Sum 0 always possible
+
+        for (int i : arr) {                     // Process each number
+
+            for (int j = target; j >= i; j--) { // Backward traversal
+
+                if (bn[j - i]) {                // If smaller sum exists
+                    bn[j] = true;               // Mark new sum achievable
+                }
+            }
+        }
+
+        return bn[target];                       // Final check
+    }
+}
+//////////////////////////////////////////////////////////////////////////
+
+Partition Equal Subset Sum
+Given an array arr[], determine if it can be partitioned into two subsets such that the sum of elements in both parts is the same.
+
+Note: Each element must be in exactly one subset.
+
+Examples:
+
+Input: arr = [1, 5, 11, 5]
+Output: true
+Explanation: The two parts are [1, 5, 5] and [11].
+
+Input: arr = [1, 3, 5]
+Output: false
+Explanation: This array can never be partitioned into two such parts.
+
+Constraints:
+1 ≤ arr.size ≤ 100
+1 ≤ arr[i] ≤ 200
+

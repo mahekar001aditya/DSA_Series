@@ -1,0 +1,99 @@
+
+class Solution {
+    
+    static int countMerge(int arr[], int l, int m, int r) {
+
+        int n = m - l + 1, o = r - m;        // Sizes of left and right subarrays
+        
+        int L[] = new int[n];                // Left temporary array
+        int R[] = new int[o];                // Right temporary array
+        
+        for (int i = 0; i < n; i++) {        // Copy left subarray
+            L[i] = arr[l + i];
+        }
+        
+        for (int j = 0; j < o; j++) {        // Copy right subarray
+            R[j] = arr[m + 1 + j];
+        }
+        
+        int i = 0, j = 0, k = l, res = 0;    // Pointers and inversion counter
+        
+        while (i < n && j < o) {             // Merge while both arrays have elements
+
+            if (L[i] <= R[j]) {              // Correct order → no inversion
+                arr[k] = L[i];
+                k++;
+                i++;
+            } else {                          // Inversion detected
+                arr[k] = R[j];
+                k++;
+                j++;
+                res += (n - i);              // Count remaining left elements
+            }
+        }
+        
+        while (i < n) {                      // Copy remaining left elements
+            arr[k] = L[i];
+            k++;
+            i++;
+        }
+        
+        while (j < o) {                      // Copy remaining right elements
+            arr[k] = R[j];
+            k++;
+            j++;
+        }
+
+        return res;                          // Return inversion count from merge
+    }
+    
+    static int countInv(int arr[], int l, int r) {
+
+        int count = 0;                       // Stores total inversions
+        
+        if (l < r) {                         // Recursive division condition
+
+            int m = (l + r) / 2;             // Midpoint calculation
+            
+            count += countInv(arr, l, m);     // Count left half inversions
+            count += countInv(arr, m + 1, r); // Count right half inversions
+            
+            count += countMerge(arr, l, m, r);// Count cross inversions
+        }
+
+        return count;                        // Return total inversions
+    }
+    
+    static int inversionCount(int arr[]) {
+
+        int l = 0, r = arr.length - 1;       // Define boundaries
+        
+        return countInv(arr, l, r);          // Start recursion
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+arr = [2,4,1,3,5]    count = 0
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Count Inversions
+Given an array of integers arr[]. You have to find the Inversion Count of the array. 
+Note : Inversion count is the number of pairs of elements (i, j) such that i < j and arr[i] > arr[j].
+
+Examples:
+
+Input: arr[] = [2, 4, 1, 3, 5]
+Output: 3
+Explanation: The sequence 2, 4, 1, 3, 5 has three inversions (2, 1), (4, 1), (4, 3).
+
+Input: arr[] = [2, 3, 4, 5, 6]
+Output: 0
+Explanation: As the sequence is already sorted so there is no inversion count.
+
+Input: arr[] = [10, 10, 10]
+Output: 0
+Explanation: As all the elements of array are same, so there is no inversion count.
+
+Constraints:
+1 ≤ arr.size() ≤ 105

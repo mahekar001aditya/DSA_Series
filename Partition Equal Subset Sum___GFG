@@ -29,6 +29,45 @@ class Solution {
     }
 }
 //////////////////////////////////////////////////////////////////////////
+arr = [1, 5, 11, 5]
+target = 11
+bn[0] = true
+✅ Full Iteration Trace (i, j, j-i, result)
+🔹 i = 1
+j = 11 → j-i = 10 → bn[10] = false → no change
+j = 10 → j-i = 9  → bn[9]  = false → no change
+j = 9  → j-i = 8  → bn[8]  = false → no change
+j = 8  → j-i = 7  → bn[7]  = false → no change
+j = 7  → j-i = 6  → bn[6]  = false → no change
+j = 6  → j-i = 5  → bn[5]  = false → no change
+j = 5  → j-i = 4  → bn[4]  = false → no change
+j = 4  → j-i = 3  → bn[3]  = false → no change
+j = 3  → j-i = 2  → bn[2]  = false → no change
+j = 2  → j-i = 1  → bn[1]  = false → no change
+j = 1  → j-i = 0  → bn[0]  = true  → bn[1] = true ✅
+🔹 i = 5
+j = 11 → j-i = 6 → bn[6] = false → no change
+j = 10 → j-i = 5 → bn[5] = false → no change
+j = 9  → j-i = 4 → bn[4] = false → no change
+j = 8  → j-i = 3 → bn[3] = false → no change
+j = 7  → j-i = 2 → bn[2] = false → no change
+j = 6  → j-i = 1 → bn[1] = true  → bn[6] = true ✅
+j = 5  → j-i = 0 → bn[0] = true  → bn[5] = true ✅
+🔹 i = 11
+j = 11 → j-i = 0 → bn[0] = true → bn[11] = true ✅
+
+🎯 Target achieved
+
+🔹 i = 5 (last element)
+j = 11 → j-i = 6 → bn[6] = true  → bn[11] already true
+j = 10 → j-i = 5 → bn[5] = true  → bn[10] = true ✅
+j = 9  → j-i = 4 → bn[4] = false → no change
+j = 8  → j-i = 3 → bn[3] = false → no change
+j = 7  → j-i = 2 → bn[2] = false → no change
+j = 6  → j-i = 1 → bn[1] = true  → bn[6] already true
+j = 5  → j-i = 0 → bn[0] = true  → bn[5] already true
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 Partition Equal Subset Sum
 Given an array arr[], determine if it can be partitioned into two subsets such that the sum of elements in both parts is the same.

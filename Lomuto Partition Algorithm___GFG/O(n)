@@ -1,0 +1,43 @@
+class Main {
+
+    void swap(int arr[], int a, int b) {                 // swap by indices
+        int temp = arr[a];                               // store first value
+        arr[a] = arr[b];                                 // replace with second
+        arr[b] = temp;                                   // restore temp
+    }
+
+    int partition(int arr[], int l, int h) {             // Lomuto partition
+
+        int pivot = arr[h];                              // choose last element
+        int i = l - 1;                                   // smaller elements boundary
+
+        for (int j = l; j < h; j++) {                    // scan l → h-1
+            if (arr[j] < pivot) {                        // element < pivot
+                i++;
+                swap(arr, i, j);                         // move left
+            }
+        }
+
+        swap(arr, i + 1, h);                             // place pivot
+        return i + 1;                                    // pivot index
+    }
+}
+////////////////////////////////////////////////////////////////////////////
+
+Lomuto Partition Algorithm
+Given an array arr[], the task is to partition the array by assuming last element as pivot element.
+The partition of an array must satisfy the following two conditions:
+Elements smaller than the pivot element appear before pivot in the array.
+Elements larger than or equal to the pivot element appear after pivot it in the array.
+Note: There might me more than one possible partition arrays.
+
+Examples:
+
+Input: arr[] = [5, 13, 6, 9, 12, 11, 8]
+Output: [5, 6, 8, 13, 9, 12, 11] 
+Explanation: All elements smaller than pivot element [5, 6] were arranged before it and elements larger than pivot [13, 9, 12, 11] were arranged after it.
+
+Input: arr[] = [4, 10, 9, 16, 19, 9]
+Output: [4, 9, 9, 10, 16, 19]
+Explanation: All elements smaller than pivot element [4] were arranged before it and elements larger than or equal to pivot [9, 10, 16, 19] were arranged after it.
+

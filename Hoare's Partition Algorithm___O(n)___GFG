@@ -1,0 +1,54 @@
+class Main {
+
+    void swap(int arr[], int i, int j) {                 // swap by index
+        int temp = arr[i];                               // store value
+        arr[i] = arr[j];                                 // replace
+        arr[j] = temp;                                   // restore
+    }
+
+    int partition(int arr[], int l, int h) {             // Hoare Partition
+
+        int pivot = arr[l];                              // first element pivot
+        int i = l - 1;                                   // left pointer
+        int j = h + 1;                                   // right pointer
+
+        while (true) {
+
+            do {
+                i++;
+            } while (arr[i] < pivot);                    // move right
+
+            do {
+                j--;
+            } while (arr[j] > pivot);                    // move left
+
+            if (i >= j) return j;                        // partition point
+
+            swap(arr, i, j);                             // swap misplaced elements
+        }
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+Hoare's Partition Algorithm
+Given an array arr[], the task is to partition the array by assuming first element as pivot element.
+
+The partition of an array must satisfy the following two conditions:
+
+Elements smaller than pivot element must appear at index less than or equal to partition index.
+Elements larger than or equal to pivot element must appear at index greater than partition index.
+Partition index is equal to count of elements, strictly smaller than pivot, minus one.
+
+Note: There might me more than one possible partition arrays.
+
+Examples:
+
+Input: arr[] = [5, 3, 8, 4, 2, 7, 1, 10]
+Output: [1, 3, 2, 4, 8, 7, 5, 10] 
+Explanation: The partition index is 3 and pivot element is 5, all elements smaller than pivot element [1, 3, 2, 4] were arranged before partition index and elements larger than or equal to pivot [8, 7, 5, 10] were arranged after partition index.
+
+Input: arr[] = [12, 10, 9, 16, 19, 9]
+Output: [9, 10, 9, 16, 19, 12] 
+Explanation: The partition index is 2 and pivot element is 12, all elements smaller than pivot element [9, 10, 9] were arranged before or at partition index and elements larger than or equal to pivot [16, 19, 12] were arranged after partition index.

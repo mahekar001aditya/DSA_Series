@@ -1,0 +1,33 @@
+
+class Main{
+    int minDiff(int arr[]){
+        int minn = Integer.MAX_VALUE;                          // stores the minimum difference found so far
+        int n = arr.length;                                    // total number of elements in the array
+
+        for(int i = 1; i < n; i++){                            // start loop from second element (index 1)
+            minn = Math.min(minn,                               // update minimum value if smaller difference found
+                            Math.abs(arr[i] - arr[i-1]));       // compute absolute difference between adjacent elements
+        }
+
+        return minn;                                            // return the smallest difference calculated
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+Find minimum difference between any two elements (pair) in given array
+Given an unsorted array, find the minimum difference between any pair in the given array.
+
+Examples :
+
+Input: {1, 5, 3, 19, 18, 25}
+Output: 1
+Explanation: Minimum difference is between 18 and 19
+
+Input: {30, 5, 20, 9}
+Output: 4
+Explanation: Minimum difference is between 5 and 9
+
+Input: {1, 19, -4, 31, 38, 25, 100}
+Output: 5
+Explanation: Minimum difference is between 1 and -4

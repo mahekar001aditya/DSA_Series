@@ -1,0 +1,84 @@
+
+void segregatePosNeg(int arr[], int n){
+    
+    int temp[] = new int[n];        // temp array
+    int j = 0;                     // temp index
+
+    for(int i = 0; i < n; i++){    // negatives first
+        if(arr[i] < 0){
+            temp[j++] = arr[i];
+        }
+    }
+
+    for(int i = 0; i < n; i++){    // positives next
+        if(arr[i] >= 0){
+            temp[j++] = arr[i];
+        }
+    }
+
+    for(int i = 0; i < n; i++){    // copy back
+        arr[i] = temp[i];
+    }
+}
+
+////////////////////////////////////////////////////////////
+
+# 🔢 Sort an Array with Two Types of Numbers
+
+## 📌 Problem Statement
+
+Given an array containing **only two distinct numbers** (any numbers, not just 0 and 1),  
+sort the array in ascending order in **O(N)** time and **O(1)** space.
+
+You are NOT allowed to use built-in sort.
+
+---
+
+## 🧠 Example 1
+
+### Input
+```
+arr = [5, 2, 5, 2, 5, 2]
+```
+
+### Output
+```
+[2, 2, 2, 5, 5, 5]
+```
+
+---
+
+## 🧠 Example 2
+
+### Input
+```
+arr = [10, -3, 10, -3, 10]
+```
+
+### Output
+```
+[-3, -3, 10, 10, 10]
+```
+
+---
+
+## 🧠 Example 3
+
+### Input
+```
+arr = [7, 4, 7, 7, 4]
+```
+
+### Output
+```
+[4, 4, 7, 7, 7]
+```
+
+---
+
+## 🎯 Constraints
+
+- 1 ≤ arr.length ≤ 10^6
+- The array contains exactly **two unique numbers**
+
+---

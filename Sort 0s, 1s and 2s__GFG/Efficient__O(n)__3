@@ -36,6 +36,144 @@ class Solution {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+# Sort 0s, 1s and 2s
+Dutch National Flag Algorithm
+
+---
+
+## Problem
+Given an array containing only 0s, 1s and 2s, sort the array in-place in a single pass.
+
+---
+
+## Initial Array
+
+arr = [2, 0, 2, 1, 1, 0]  
+n = 6
+
+---
+
+## Region Structure
+
+| 0s | 1s | Unknown | 2s |
+  0    l     m        h   n-1
+
+---
+
+## Index Meaning
+
+[0 ...... l-1]  → 0s  
+[l ...... m-1]  → 1s  
+[m ...... h]    → Unknown  
+[h+1 .... n-1]  → 2s  
+
+---
+
+--------------------------------------------------
+Step 1
+
+l=0, m=0, h=5
+
+| 2 | 0 | 2 | 1 | 1 | 0 |
+  l,m                h
+
+arr[m] = 2 → swap(m, h)
+
+| 0 | 0 | 2 | 1 | 1 | 2 |
+  l,m            h
+
+h = 4
+
+--------------------------------------------------
+Step 2
+
+l=0, m=0, h=4
+
+| 0 | 0 | 2 | 1 | 1 | 2 |
+  l,m          h
+
+arr[m] = 0 → swap(l, m)
+
+| 0 | 0 | 2 | 1 | 1 | 2 |
+    l,m        h
+
+l = 1  
+m = 1
+
+--------------------------------------------------
+Step 3
+
+l=1, m=1, h=4
+
+| 0 | 0 | 2 | 1 | 1 | 2 |
+    l,m        h
+
+arr[m] = 0 → swap(l, m)
+
+| 0 | 0 | 2 | 1 | 1 | 2 |
+        l,m      h
+
+l = 2  
+m = 2
+
+--------------------------------------------------
+Step 4
+
+l=2, m=2, h=4
+
+| 0 | 0 | 2 | 1 | 1 | 2 |
+        l,m    h
+
+arr[m] = 2 → swap(m, h)
+
+| 0 | 0 | 1 | 1 | 2 | 2 |
+        l,m  h
+
+h = 3
+
+--------------------------------------------------
+Step 5
+
+arr[m] = 1 → m++
+
+l=2, m=3, h=3
+
+| 0 | 0 | 1 | 1 | 2 | 2 |
+        l    m h
+
+--------------------------------------------------
+Step 6
+
+arr[m] = 1 → m++
+
+m = 4  
+m > h → stop
+
+--------------------------------------------------
+Final Output
+
++---+---+---+---+---+---+
+| 0 | 0 | 1 | 1 | 2 | 2 |
++---+---+---+---+---+---+
+
+---
+
+## Time Complexity
+O(n)
+
+## Space Complexity
+O(1)
+
+---
+
+## Important Notes
+
+- Loop condition must be while (m <= h)
+- Do NOT increment m after swapping with h
+- Single-pass optimal solution
+
+//////////////////////////////////////////////////////////////////////////
+
 Sort 0s, 1s and 2s
 Given an array arr[] containing only 0s, 1s, and 2s. Sort the array in ascending order.
 Note: You need to solve this problem without utilizing the built-in sort function.

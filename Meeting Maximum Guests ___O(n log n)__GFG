@@ -1,0 +1,40 @@
+
+int maxGuest(int arr[], int dep[], int n){
+
+    Arrays.sort(arr);                      // sort arrival times
+    Arrays.sort(dep);                      // sort departure times
+
+    int i = 1, j = 0;                      // i → arrival pointer, j → departure pointer
+    int res = 1, curr = 1;                 // res → max guests, curr → current guests
+
+    while(i < n && j < n){                 // process all events
+
+        if(arr[i] <= dep[j]){              // new guest arrives before previous leaves
+              i++;                         
+              curr++;                      // increase current count
+        }
+        else{
+              j++;                         
+              curr--;                      // guest leaves
+        }
+
+        res = Math.max(curr, res);         // update maximum guests
+    }
+
+    return res;                            // return maximum guests at any time
+}
+
+/////////////////////////////////////////////////////////////////
+
+Meeting Maximum Guests in Java
+Given two arrays, arr[] and dep[] representing the arrival and departure times of guests at a party, where each arrival corresponds to a departure at the same index, the goal is to find the maximum number of guests present at any moment.
+
+Example:
+
+Input:
+arr[] = {900, 940}
+dep[] = {1000, 1030}
+
+Output: 2
+
+Explanation: The maximum number of guests present at the same time is 2, between 9:40 and 10:00.

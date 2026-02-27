@@ -1,0 +1,58 @@
+
+class Solution {
+    
+   void swap(int arr[], int a, int b){          // swap elements at index a and b
+        int temp = arr[a];                     // store arr[a]
+        arr[a] = arr[b];                       // assign arr[b] to arr[a]
+        arr[b] = temp;                         // assign temp to arr[b]
+    }
+
+    public void sort012(int[] arr) {
+        int k = 0;                             // position to place next element
+        
+        // First pass → place all 0s at beginning
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] == 0){                   // if element is 0
+                swap(arr, k, i);               // swap with position k
+                k++;                           // move k forward
+            }
+        }
+        
+        // Second pass → place all 1s after 0s
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] == 1){                   // if element is 1
+                swap(arr, k, i);               // swap with position k
+                k++;                           // move k forward
+            }
+        } 
+        
+        // Third pass → place all 2s at end
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] == 2){                   // if element is 2
+                swap(arr, k, i);               // swap with position k
+                k++;                           // move k forward
+            }
+        } 
+    }
+}
+///////////////////////////////////////////////////////////////////////////////
+
+Sort 0s, 1s and 2s
+Given an array arr[] containing only 0s, 1s, and 2s. Sort the array in ascending order.
+Note: You need to solve this problem without utilizing the built-in sort function.
+
+Examples:
+
+Input: arr[] = [0, 1, 2, 0, 1, 2]
+Output: [0, 0, 1, 1, 2, 2]
+Explanation: 0s, 1s and 2s are segregated into ascending order.
+
+Input: arr[] = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
+Output: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+Explanation: 0s, 1s and 2s are segregated into ascending order.
+Follow up: Could you come up with a one-pass algorithm using only constant extra space?
+
+Constraints:
+1 ≤ arr.size() ≤ 106
+0 ≤ arr[i] ≤ 2
+

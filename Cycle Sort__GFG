@@ -1,0 +1,114 @@
+
+class Main{                                            // Main class
+
+    void cycleSortDist(int arr[], int n){              // Function to perform Cycle Sort
+
+        for(int cs = 0; cs < n-1; cs++){                // Iterate through array cycles
+
+            int item = arr[cs];                         // Current item to place correctly
+            int pos = cs;                               // Assume correct position is current index
+
+            for(int i = cs + 1; i < n; i++){             // Find correct position of item
+                if(arr[i] < item){                      
+                    pos++;                              // Count elements smaller than item
+                }
+            }
+
+            if(pos == cs)                               // If already in correct position
+                continue;                               // Move to next cycle
+
+            int temp = item;                            // Swap item with element at correct position
+            item = arr[pos];
+            arr[pos] = temp;
+
+            while(pos != cs){                           // Rotate remaining cycle elements
+
+                pos = cs;                               // Reset position
+
+                for(int i = cs + 1; i < n; i++){         // Find correct position again
+                    if(arr[i] < item){
+                        pos++;                          // Count smaller elements
+                    }
+                }
+
+                temp = item;                            // Swap to place next element
+                item = arr[pos];
+                arr[pos] = temp;
+            }
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+# Cycle Sort
+
+## Short Description
+
+Cycle Sort is an in-place sorting algorithm that places each element directly in its correct position by counting how many elements are smaller than it.  
+It divides the array into cycles and rotates the elements within each cycle until every element reaches its correct index.
+
+The algorithm is optimal in terms of memory writes because each element is written at most one time to its correct position.
+
+Time Complexity  
+Best Case: O(n²)  
+Average Case: O(n²)  
+Worst Case: O(n²)
+
+Space Complexity  
+O(1)
+
+---
+
+## Test Cases
+
+### Test Case 1
+Input
+```
+[2, 4, 5, 1, 3]
+```
+
+Output
+```
+[1, 2, 3, 4, 5]
+```
+
+---
+
+### Test Case 2
+Input
+```
+[4, 3, 2, 1]
+```
+
+Output
+```
+[1, 2, 3, 4]
+```
+
+---
+
+### Test Case 3
+Input
+```
+[1, 5, 4, 3, 2]
+```
+
+Output
+```
+[1, 2, 3, 4, 5]
+```
+
+---
+
+### Test Case 4
+Input
+```
+[10, 7, 8, 9, 1, 5]
+```
+
+Output
+```
+[1, 5, 7, 8, 9, 10]
+```
+

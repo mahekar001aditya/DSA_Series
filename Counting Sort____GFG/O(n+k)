@@ -1,0 +1,80 @@
+
+void countSort(int arr[], int n, int k){                 // Counting Sort function
+
+    int count[] = new int[k];                            // Count array of size k
+
+    for(int j = 0; j < n; j++){                          // Count frequency of elements
+        count[arr[j]]++;
+    }
+
+    int idx = 0;                                         // Index for sorted array
+
+    for(int i = 0; i < k; i++){                          // Traverse count array
+        for(int j = 0; j < count[i]; j++){               // Place elements according to frequency
+            arr[idx++] = i;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////
+
+# Counting Sort
+
+## Problem Statement
+Given an integer array where all values are non-negative and within a limited range, sort the array using the Counting Sort algorithm.
+Counting Sort works by counting the number of occurrences of each element and then using this information to place the elements in their correct positions in the sorted array.
+
+---
+
+## Test Cases
+
+### Test Case 1
+Input
+```
+[4, 2, 2, 8, 3, 3, 1]
+```
+
+Output
+```
+[1, 2, 2, 3, 3, 4, 8]
+```
+
+---
+
+### Test Case 2
+Input
+```
+[1, 4, 1, 2, 7, 5, 2]
+```
+
+Output
+```
+[1, 1, 2, 2, 4, 5, 7]
+```
+
+---
+
+### Test Case 3
+Input
+```
+[9, 4, 10, 8, 2, 4]
+```
+
+Output
+```
+[2, 4, 4, 8, 9, 10]
+```
+
+---
+
+### Test Case 4
+Input
+```
+[5, 3, 0, 2, 4, 1]
+```
+
+Output
+```
+[0, 1, 2, 3, 4, 5]
+```
+

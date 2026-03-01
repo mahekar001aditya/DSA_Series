@@ -1,0 +1,142 @@
+
+void countSort(int arr[], int n, int k){                     // Counting Sort function
+
+    int count[] = new int[k];                                // Count array of size k
+
+    for(int i = 0; i < k; i++){                              // Initialize count array
+        count[i] = 0;
+    }
+
+    for(int j = 0; j < n; j++){                              // Count frequency of elements
+        count[arr[j]]++;
+    }
+
+    for(int i = 1; i < k; i++){                              // Compute prefix sum
+        count[i] = count[i-1] + count[i];
+    }
+
+    int output[] = new int[n];                               // Output array
+
+    for(int i = n-1; i >= 0; i--){                            // Place elements in correct position
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;                                     // Decrease count
+    }
+
+    for(int i = 0; i < n; i++){                               // Copy output back to original array
+        arr[i] = output[i];
+    }
+}   
+
+//////////////////////////////////////////////////////////////
+
+# Counting Sort Dry Run
+
+Input
+```
+arr = [1,4,4,1,0,1]
+k = 5
+```
+
+---
+
+## Step 1: Count Frequency
+
+```
+count = [1,3,0,0,2]
+```
+
+Meaning
+
+```
+0 → 1
+1 → 3
+2 → 0
+3 → 0
+4 → 2
+```
+
+---
+
+## Step 2: Prefix Sum
+
+```
+count = [1,4,4,4,6]
+```
+
+---
+
+## Step 3: Build Output
+
+```
+output = [0,1,1,1,4,4]
+```
+
+---
+
+## Final Sorted Array
+
+```
+[0,1,1,1,4,4]
+```
+
+///////////////////////////////////////////////////////////////////////////////////
+
+# Counting Sort
+
+## Problem Statement
+Given an integer array where all values are non-negative and within a limited range, sort the array using the Counting Sort algorithm.
+Counting Sort works by counting the number of occurrences of each element and then using this information to place the elements in their correct positions in the sorted array.
+
+---
+
+## Test Cases
+
+### Test Case 1
+Input
+```
+[4, 2, 2, 8, 3, 3, 1]
+```
+
+Output
+```
+[1, 2, 2, 3, 3, 4, 8]
+```
+
+---
+
+### Test Case 2
+Input
+```
+[1, 4, 1, 2, 7, 5, 2]
+```
+
+Output
+```
+[1, 1, 2, 2, 4, 5, 7]
+```
+
+---
+
+### Test Case 3
+Input
+```
+[9, 4, 10, 8, 2, 4]
+```
+
+Output
+```
+[2, 4, 4, 8, 9, 10]
+```
+
+---
+
+### Test Case 4
+Input
+```
+[5, 3, 0, 2, 4, 1]
+```
+
+Output
+```
+[0, 1, 2, 3, 4, 5]
+```
